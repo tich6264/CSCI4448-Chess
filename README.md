@@ -1,1 +1,1 @@
-# CSCI4448-Chess
+# CSCI4448-ClosetBot
