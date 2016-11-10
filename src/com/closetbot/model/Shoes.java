@@ -5,7 +5,13 @@ package com.closetbot.model;
  */
 public class Shoes extends ClothingArticle {
     public ShoeTypes type;
+
     public Shoes(ShoeTypes _type){
         type = _type;
+    }
+
+    public Shoes( ShoeTypes _type, DecoratorWrapper _article ){
+        type = _type;
+        article = _article;
     }
 }
