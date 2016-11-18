@@ -1,21 +1,16 @@
 package com.closetbot.view;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.JFrame;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
-import javax.swing.JPanel;
 
-public class JFrameTest extends JFrame {
+public class JClosetFrame extends JFrame {
 
     private JPanel panel1 = new JPanel();
     private JPanel panel2 = new JPanel();
 
-    public JFrameTest() {
+    public JClosetFrame() {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         initMenu();
         panel1.setBackground(Color.BLUE);
@@ -23,19 +18,10 @@ public class JFrameTest extends JFrame {
         setLayout(new BorderLayout());
     }
 
-    private class MenuAction implements ActionListener {
-
-        private JPanel panel;
-
-        private MenuAction(JPanel pnl) {
-            this.panel = pnl;
-        }
-
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            changePanel(panel);
-
-        }
+    public static void main(String[] args) {
+        JClosetFrame frame = new JClosetFrame();
+        frame.setBounds(200, 200, 300, 200);
+        frame.setVisible(true);
 
     }
 
@@ -50,7 +36,6 @@ public class JFrameTest extends JFrame {
         setJMenuBar(menubar);
         menuItem1.addActionListener(new MenuAction(panel1));
         menuItem2.addActionListener(new MenuAction(panel2));
-
     }
 
     private void changePanel(JPanel panel) {
@@ -60,10 +45,17 @@ public class JFrameTest extends JFrame {
         update(getGraphics());
     }
 
-    public static void main(String[] args) {
-        JFrameTest frame = new JFrameTest();
-        frame.setBounds(200, 200, 300, 200);
-        frame.setVisible(true);
+    private class MenuAction implements ActionListener {
+        private JPanel panel;
+
+        private MenuAction(JPanel pnl) {
+            this.panel = pnl;
+        }
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            changePanel(panel);
+        }
 
     }
 }
