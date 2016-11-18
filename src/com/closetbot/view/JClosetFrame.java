@@ -21,7 +21,7 @@ public class JClosetFrame extends JFrame {
 
     public static void main(String[] args) {
         JClosetFrame frame = new JClosetFrame();
-        frame.setBounds(200, 200, 300, 200);
+        frame.setBounds(200, 200, 3000, 2000);
         frame.setVisible(true);
 
     }
@@ -53,7 +53,9 @@ public class JClosetFrame extends JFrame {
     private void changePanel(JPanel panel) {
         getContentPane().removeAll();
         getContentPane().add(panel, BorderLayout.CENTER);
+        getContentPane().revalidate();
         getContentPane().doLayout();
+        getContentPane().repaint();
         update(getGraphics());
     }
 
