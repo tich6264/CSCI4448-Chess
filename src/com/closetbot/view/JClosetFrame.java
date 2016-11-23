@@ -23,7 +23,6 @@ public class JClosetFrame extends JFrame {
         JClosetFrame frame = new JClosetFrame();
         frame.setBounds(200, 200, 3000, 2000);
         frame.setVisible(true);
-
     }
 
     private void initMenu() {
@@ -46,8 +45,8 @@ public class JClosetFrame extends JFrame {
         menuItem1.addActionListener(new MenuAction(jAddOutfitPanel));
         menuItem2.addActionListener(new MenuAction(jEditOutfitPanel));
         menuItem3.addActionListener(new MenuAction(jGenerateOutfitPanel));
-        menuItem4.addActionListener(new MenuAction(jViewClosetPanel));
-        menuItem5.addActionListener(new MenuAction(jViewOutfitClosetPanel));
+        menuItem4.addActionListener(new MenuAction(jEditOutfitPanel));
+        menuItem5.addActionListener(new MenuAction(jEditOutfitPanel));
     }
 
     private void changePanel(JPanel panel) {
