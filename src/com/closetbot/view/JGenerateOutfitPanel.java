@@ -34,7 +34,7 @@ public class JGenerateOutfitPanel extends JPanel {
         bottomPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
         bottomPanel.add(new JButton("Save"));
 
-        //this.setSize(300, 300);
+
 
         //Add Components to frame
         this.add(topPanel, BorderLayout.NORTH);
@@ -45,6 +45,7 @@ public class JGenerateOutfitPanel extends JPanel {
     private static void createAndShowGui() {
         //Create and Setup frame/window
         JFrame frame = new JFrame("myFrame");
+        frame.setSize(300, 300);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
         //Create Content Pane
