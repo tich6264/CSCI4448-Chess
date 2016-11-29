@@ -19,14 +19,14 @@ import javax.persistence.criteria.Root;
 public class DatabaseProxy {
 
     private static SessionFactory factory;
-    private static Configuration  cfg = new Configuration();
+    private static Configuration cfg = new Configuration();
 
     {
         cfg.configure("hibernate.cfg.xml"); //load in our hibernate cfg
         factory = cfg.buildSessionFactory(); //make  a factory based on the configuration
     }
-    public User createUser(String firstName, String lastName, Gender g, String username, String password)
-    {
+
+    public User createUser(String firstName, String lastName, Gender g, String username, String password) {
         Session session = factory.openSession();
 
         User newUser = new User();
@@ -40,49 +40,50 @@ public class DatabaseProxy {
 
         Transaction tx = null;
 
-        try{
+        try {
             tx = session.beginTransaction();
             session.save(newUser);
             tx.commit();
-        }catch (HibernateException e){
-            if(tx != null)
+        } catch (HibernateException e) {
+            if (tx != null)
                 tx.rollback();
             e.printStackTrace();
         }
 
         return newUser;
     }
-    public boolean saveUser(User u){
 
-        Session session = factory.openSession();
-        Transaction tx = null;
-        try{
+    public boolean saveUser(User u) {
+
+        Session     session = factory.openSession();
+        Transaction tx      = null;
+        try {
             tx = session.beginTransaction();
             session.save(u);
             tx.commit();
-        }catch (HibernateException e){
-            if(tx != null)
+        } catch (HibernateException e) {
+            if (tx != null)
                 tx.rollback();
             e.printStackTrace();
             return false;
         }
         return true;
     }
-    public User getUser(String username, String password){
-       Session session = factory.openSession();
 
-            CriteriaBuilder     builder  = session.getCriteriaBuilder();
-            CriteriaQuery<User> criteria = builder.createQuery(User.class);
-            Root<User>          from     = criteria.from(User.class);
-            criteria.select(from);
-            criteria.where(builder.equal(from.get("username"),username));
-            criteria.where(builder.equal(from.get("password"),password));
-            TypedQuery<User> typed = session.createQuery(criteria);
-            try {
-                return typed.getSingleResult();
-            } catch (final NoResultException nre) {
-                return null;
-            }
+    public User getUser(String username, String password) {
+        Session session = factory.openSession();
+
+        CriteriaBuilder     builder  = session.getCriteriaBuilder();
+        CriteriaQuery<User> criteria = builder.createQuery(User.class);
+        Root<User>          from     = criteria.from(User.class);
+        criteria.select(from);
+        criteria.where(builder.equal(from.get("username"), username));
+        criteria.where(builder.equal(from.get("password"), password));
+        TypedQuery<User> typed = session.createQuery(criteria);
+        try {
+            return typed.getSingleResult();
+        } catch (final NoResultException nre) {
+            return null;
         }
     }
 }
