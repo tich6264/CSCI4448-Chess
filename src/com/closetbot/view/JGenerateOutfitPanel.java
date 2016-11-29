@@ -9,7 +9,6 @@ import java.awt.*;
  */
 public class JGenerateOutfitPanel extends JPanel {
     public JGenerateOutfitPanel() {
-
         this.setLayout(new BorderLayout());
 
         //Title
@@ -30,10 +29,13 @@ public class JGenerateOutfitPanel extends JPanel {
 
         //Save Button
         JPanel bottomPanel = new JPanel();
-
+        JButton saveButton;
         bottomPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
-        bottomPanel.add(new JButton("Save"));
-
+        bottomPanel.add(saveButton = new JButton("Save"));
+        saveButton.addActionListener(actionEvent -> {
+            //TODO UIController save outfit
+            System.out.println("Saving outfit");
+        });
 
 
         //Add Components to frame
