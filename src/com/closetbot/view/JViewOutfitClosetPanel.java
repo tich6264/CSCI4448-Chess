@@ -72,11 +72,9 @@ public class JViewOutfitClosetPanel extends JPanel {
 
         deleteItem.addActionListener(actionEvent -> {
             uiController.removeOutfit(selected);
-            System.out.println("Deleting : " + selected.toString());
         });
 
         next.addActionListener(actionEvent -> {
-            System.out.println("Next item ; " + selected.toString());
             nextOutfit(closetIterator, tableModel);
         });
 
@@ -100,7 +98,7 @@ public class JViewOutfitClosetPanel extends JPanel {
 
     private boolean nextOutfit(OutfitIterator it, ViewOutfitClosetTableModel model) {
 
-        if (closetIterator.hasNext()) {
+        if (closetIterator != null && closetIterator.hasNext()) {
             selected = (Outfit) closetIterator.next();
             ArrayList<ClothingArticle> clothes = (ArrayList<ClothingArticle>) selected.getClothingArticle();
             Object[][]                 data    = new Object[4][clothes.size()];
