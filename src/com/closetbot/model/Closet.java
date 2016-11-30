@@ -19,19 +19,19 @@ public class Closet implements Serializable{
         clothes = new ArrayList<>();
     }
 
-    void addClothingArticle( ClothingArticle clothingArticle ){
+    public void addClothingArticle( ClothingArticle clothingArticle ){
         clothes.add( clothingArticle );
     }
 
-    void removeClothingArticle( ClothingArticle clothingArticle ){
+    public void removeClothingArticle( ClothingArticle clothingArticle ){
         clothes.remove( clothingArticle );
     }
 
-    Outfit[] generateOutfits( Season s ){
+    public Outfit[] generateOutfits( Season s ){
         return null;
     }
 
-    ClothingArticle[] getClothes(){
+    public ClothingArticle[] getClothes(){
         return (ClothingArticle[])clothes.toArray();
     }
 

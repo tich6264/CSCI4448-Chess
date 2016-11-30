@@ -65,7 +65,7 @@ public class JViewClosetPanel extends JPanel {
         editItem.setText("Edit");
 
         deleteItem.addActionListener(actionEvent -> {
-            //TODO UIController delete item
+            uiController.removeClothingArticle((ClothingArticle) selected);
             System.out.println("Deleting : " + selected.toString());
         });
 

@@ -26,4 +26,19 @@ public abstract class ClothingArticle implements DecoratorWrapper {
         toRet.add(this);
         return toRet;
     }
+    public Color getColor(){
+        return color;
+    }
+
+    public Pattern getPattern() {
+        return pattern;
+    }
+
+    public Season getSeason() {
+        return season;
+    }
+
+    public Type getType() {
+        return type;
+    }
 }
