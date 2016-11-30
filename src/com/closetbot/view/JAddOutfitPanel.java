@@ -23,11 +23,13 @@ public class JAddOutfitPanel extends JPanel {
     public JAddOutfitPanel()
     {
         super();
+        setLayout(new BorderLayout());
 
-        JPanel panel = new JPanel();
-        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+        // Title
+        JPanel titlePanel = new JPanel();
+        titlePanel.add(new JLabel("Add Your New Article of Clothing"));
 
-        // creates dropdowns
+        // Dropdowns
         String[] types = new String[] {"Accessories", "Bottom", "Top", "Shoes"};
 
         JComboBox<String> typeList = new JComboBox<String>(types);
@@ -46,19 +48,15 @@ public class JAddOutfitPanel extends JPanel {
                 Object selected = typeList.getSelectedItem();
                 if( selected.toString().equals("Accessories") ){
                     subTypeList.setModel( new DefaultComboBoxModel<AccessoryTypes>(AccessoryTypes.values()));
-                    //JComboBox<AccessoryTypes> subTypeList = new JComboBox(AccessoryTypes.values());
                 }
                 else if( selected.toString().equals("Bottom") ){
                     subTypeList.setModel( new DefaultComboBoxModel<BottomTypes>(BottomTypes.values()));
-                    // JComboBox<BottomTypes> subTypeList = new JComboBox(BottomTypes.values());
                 }
                 else if( selected.toString().equals("Top") ){
                     subTypeList.setModel( new DefaultComboBoxModel<TopTypes>(TopTypes.values()));
-                    // JComboBox<TopTypes> subTypeList = new JComboBox(TopTypes.values());
                 }
                 else if( selected.toString().equals("Shoes") ){
                     subTypeList.setModel( new DefaultComboBoxModel<ShoeTypes>(ShoeTypes.values()));
-                    // JComboBox<ShoeTypes> subTypeList = new JComboBox(ShoeTypes.values());
                 }
                 else{
                     JComboBox subTypeList = new JComboBox();
@@ -66,34 +64,64 @@ public class JAddOutfitPanel extends JPanel {
             }
         } );
 
-        // creates labels
+        // Creates panel for each attribute
+        // TYPE
+        JPanel typePanel = new JPanel();
         typeLabel = new JLabel("Type");
+
+        typePanel.add(typeLabel);
+        typePanel.add(typeList);
+
+        // SUBTYPE
+        JPanel subTypePanel = new JPanel();
         subTypeLabel = new JLabel("Subtype");
+
+        subTypePanel.add(subTypeLabel);
+        subTypePanel.add(subTypeList);
+
+        // COLOR
+        JPanel colorPanel = new JPanel();
         colorLabel = new JLabel("Color");
+
+        colorPanel.add(colorLabel);
+        colorPanel.add(colorList);
+
+        // PATTERN
+        JPanel patternPanel = new JPanel();
         patternLabel = new JLabel("Pattern");
+
+        patternPanel.add(patternLabel);
+        patternPanel.add(patternList);
+
+        // SEASON
+        JPanel seasonPanel = new JPanel();
         seasonLabel = new JLabel("Season");
 
-        // save selections
+        seasonPanel.add(seasonLabel);
+        seasonPanel.add(seasonList);
+
+        // Aligns labels and dropdowns down Y axis
+        JPanel bodyPanel = new JPanel();
+        bodyPanel.setLayout(new BoxLayout(bodyPanel, BoxLayout.Y_AXIS));
+
+        bodyPanel.add(typePanel);
+        bodyPanel.add(subTypePanel);
+        bodyPanel.add(colorPanel);
+        bodyPanel.add(patternPanel);
+        bodyPanel.add(seasonPanel);
+
+        typePanel.setAlignmentX(Component.RIGHT_ALIGNMENT);
+        subTypePanel.setAlignmentX(Component.RIGHT_ALIGNMENT);
+        colorPanel.setAlignmentX(Component.RIGHT_ALIGNMENT);
+        patternPanel.setAlignmentX(Component.RIGHT_ALIGNMENT);
+        seasonPanel.setAlignmentX(Component.RIGHT_ALIGNMENT);
+
+        // Save
         saveButton = new JButton("Save");
+        bodyPanel.add(saveButton);
 
-        // add dropdowns & labels to frame
-        panel.add(typeLabel);
-        panel.add(typeList);
-
-        panel.add(subTypeLabel);
-        panel.add(subTypeList);
-
-        panel.add(colorLabel);
-        panel.add(colorList);
-
-        panel.add(patternLabel);
-        panel.add(patternList);
-
-        panel.add(seasonLabel);
-        panel.add(seasonList);
-
-        panel.add(saveButton);
-
-        add(panel);
+        // add all panels
+        add(titlePanel, BorderLayout.NORTH);
+        add(bodyPanel, BorderLayout.CENTER);
     }
 }
