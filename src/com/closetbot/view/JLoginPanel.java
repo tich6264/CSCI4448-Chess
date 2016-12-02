@@ -38,7 +38,8 @@ public class JLoginPanel extends JPanel {
         //Create and Setup frame/window
         JFrame frame = new JFrame("LoginFrame");
         frame.setSize(300, 300);
-        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
 
         //Create Content Pane
         frame.getContentPane().add(new JLoginPanel());

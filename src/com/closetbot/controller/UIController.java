@@ -1,9 +1,6 @@
 package com.closetbot.controller;
 
-import com.closetbot.model.Closet;
-import com.closetbot.model.ClothingArticle;
-import com.closetbot.model.Outfit;
-import com.closetbot.model.OutfitCloset;
+import com.closetbot.model.*;
 
 /**
  * Created by Owner on 11/2/2016.
@@ -45,7 +42,7 @@ public class UIController {
      * For use in JViewClosetPanel
      */
     public Object[][] getClosetData() {
-        if(closet != null){
+        if (closet != null) {
             ClothingArticle[] clothes = closet.getClothes();
             Object[][]        toRet   = new Object[5][clothes.length];
             int               i       = 0;
@@ -62,11 +59,21 @@ public class UIController {
         }
         return null;
     }
-    public void removeClothingArticle(ClothingArticle cl){
+
+    public void removeClothingArticle(ClothingArticle cl) {
         closet.removeClothingArticle(cl);
     }
-    public void removeOutfit(Outfit o){
-        if(o != null)
+
+    public void removeOutfit(Outfit o) {
+        assert (closet != null);
+        if (o != null)
             outfitCloset.removeOutfit(o);
+    }
+
+    public void addClothingArticle(String type, Type subType, Color color, Pattern pattern, Season season) {
+        assert (closet != null);
+        ClothingArticleFactory factory = new ClothingArticleFactory();
+        ClothingArticle        cl      = factory.createClothingArticle(subType, color, pattern, season);
+        closet.addClothingArticle(cl);
     }
 }

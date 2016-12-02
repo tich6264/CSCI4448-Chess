@@ -6,13 +6,13 @@ package com.closetbot.model;
 public class Top extends ClothingArticle {
     public TopTypes type;
 
-    public Top( TopTypes _type ){
-        type = _type;
-    }
-
-    public Top( TopTypes _type, DecoratorWrapper _article ){
+    public Top(Color c, Pattern p, Season s, TopTypes _type, DecoratorWrapper _article){
+        super(c,p,s);
         type = _type;
         article = _article;
     }
-
+    public Top(Color c, Pattern p, Season s, TopTypes _type){
+        super(c,p,s);
+        type = _type;
+    }
 }
