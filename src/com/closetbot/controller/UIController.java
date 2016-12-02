@@ -66,6 +66,7 @@ public class UIController {
         closet.removeClothingArticle(cl);
     }
     public void removeOutfit(Outfit o){
-        outfitCloset.removeOutfit(o);
+        if(o != null)
+            outfitCloset.removeOutfit(o);
     }
 }

@@ -15,7 +15,7 @@ public class ViewClosetTableModel extends AbstractTableModel{
                                         "Season"};
         private Object[][] data = {
         {"Shoes", "BLUE",
-         "CHECKERED", "FALL", new Shoes(ShoeTypes.BOOTS)}, //TODO have final element be clothingarticle
+         "CHECKERED", "FALL", new Shoes(ShoeTypes.BOOTS)},
         {"Top", "RED",
                 "STRIPED", "SUMMER", new Top(TopTypes.CARDIGAN)},
         {"Bottom", "PINK",

@@ -23,14 +23,13 @@ public class JViewOutfitClosetPanel extends JPanel {
     private JTextField                           statusText;
     private TableRowSorter<ViewClosetTableModel> sorter;
     private Outfit                               selected;
-    private OutfitCloset                         closet;
     private OutfitIterator                       closetIterator;
     private static UIController uiController = UIController.getUIController();
 
 
     public JViewOutfitClosetPanel() {
         super();
-        closet = UIController.getOutfitCloset();
+        OutfitCloset closet = UIController.getOutfitCloset();
         if (closet != null) {
             closetIterator = closet.iterator();
         }
@@ -71,7 +70,8 @@ public class JViewOutfitClosetPanel extends JPanel {
         next.setText("Next");
 
         deleteItem.addActionListener(actionEvent -> {
-            uiController.removeOutfit(selected);
+            uiController.removeOutfit(selected);//delete and then if there is a next object, go to it
+            nextOutfit(closetIterator, tableModel);
         });
 
         next.addActionListener(actionEvent -> {
