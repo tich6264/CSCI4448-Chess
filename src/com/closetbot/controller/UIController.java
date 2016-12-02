@@ -7,9 +7,7 @@ import com.closetbot.model.*;
  */
 public class UIController {
     private static UIController uiController;
-    private static Closet       closet;
-    private static OutfitCloset outfitCloset;
-
+    private static User         user;
     private UIController() {
     }
 
@@ -19,31 +17,27 @@ public class UIController {
         return uiController;
     }
 
+    public static void setUser(User u){
+        user = u;
+    }
+
     /*
      * for use in JViewOutfitClosetPanel
      */
     public static OutfitCloset getOutfitCloset() {
-        return outfitCloset;
-    }
-
-    public static void setOutfitCloset(OutfitCloset outfitCloset) {
-        UIController.outfitCloset = outfitCloset;
-    }
-
-    public void setCloset(Closet c) {
-        closet = c;
+        return user.getOutfits();
     }
 
     public Closet getCloset() {
-        return closet;
+        return user.getCloset();
     }
 
     /*
      * For use in JViewClosetPanel
      */
     public Object[][] getClosetData() {
-        if (closet != null) {
-            ClothingArticle[] clothes = closet.getClothes();
+        if (user.getCloset() != null) {
+            ClothingArticle[] clothes = user.getCloset().getClothes();
             Object[][]        toRet   = new Object[5][clothes.length];
             int               i       = 0;
             for (ClothingArticle cl : clothes) {
@@ -61,19 +55,21 @@ public class UIController {
     }
 
     public void removeClothingArticle(ClothingArticle cl) {
-        closet.removeClothingArticle(cl);
+        user.getCloset().removeClothingArticle(cl);
     }
 
     public void removeOutfit(Outfit o) {
-        assert (closet != null);
+        assert(user != null);
+        assert (user.getOutfits() != null);
         if (o != null)
-            outfitCloset.removeOutfit(o);
+            user.getOutfits().removeOutfit(o);
     }
 
-    public void addClothingArticle(String type, Type subType, Color color, Pattern pattern, Season season) {
-        assert (closet != null);
+    public void addClothingArticle(Type subType, Color color, Pattern pattern, Season season) {
+        assert(user != null);
+        assert (user.getCloset() != null);
         ClothingArticleFactory factory = new ClothingArticleFactory();
         ClothingArticle        cl      = factory.createClothingArticle(subType, color, pattern, season);
-        closet.addClothingArticle(cl);
+        user.getCloset().addClothingArticle(cl);
     }
 }

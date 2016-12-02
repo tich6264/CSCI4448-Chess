@@ -121,7 +121,7 @@ public class JAddOutfitPanel extends JPanel {
         // Save
         saveButton = new JButton("Save");
         saveButton.addActionListener(actionEvent -> {
-            uiController.addClothingArticle((String)typeList.getSelectedItem(),(Type) subTypeList.getSelectedItem(),(Color) colorList.getSelectedItem(),(Pattern) patternList.getSelectedItem(),(Season) seasonList.getSelectedItem());
+            uiController.addClothingArticle((Type) subTypeList.getSelectedItem(),(Color) colorList.getSelectedItem(),(Pattern) patternList.getSelectedItem(),(Season) seasonList.getSelectedItem());
         });
         bodyPanel.add(saveButton);
 
