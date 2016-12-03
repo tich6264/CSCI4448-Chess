@@ -45,8 +45,8 @@ public class JClosetFrame extends JFrame {
         menuItem1.addActionListener(new MenuAction(jAddOutfitPanel));
         menuItem2.addActionListener(new MenuAction(jEditOutfitPanel));
         menuItem3.addActionListener(new MenuAction(jGenerateOutfitPanel));
-        menuItem4.addActionListener(new MenuAction(jEditOutfitPanel));
-        menuItem5.addActionListener(new MenuAction(jEditOutfitPanel));
+        menuItem4.addActionListener(new MenuAction(jViewClosetPanel));
+        menuItem5.addActionListener(new MenuAction(jViewOutfitClosetPanel));
     }
 
     private void changePanel(JPanel panel) {

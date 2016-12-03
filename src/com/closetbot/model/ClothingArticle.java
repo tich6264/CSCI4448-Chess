@@ -12,6 +12,12 @@ public abstract class ClothingArticle implements DecoratorWrapper {
     private Season season;
     private Type type;
 
+    public ClothingArticle(Color c, Pattern p, Season s){
+        color = c;
+        pattern = p;
+        season = s;
+    }
+
     protected DecoratorWrapper article = null;
 
     @Override
@@ -25,5 +31,20 @@ public abstract class ClothingArticle implements DecoratorWrapper {
         }
         toRet.add(this);
         return toRet;
+    }
+    public Color getColor(){
+        return color;
+    }
+
+    public Pattern getPattern() {
+        return pattern;
+    }
+
+    public Season getSeason() {
+        return season;
+    }
+
+    public Type getType() {
+        return type;
     }
 }

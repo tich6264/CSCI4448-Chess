@@ -6,13 +6,14 @@ package com.closetbot.model;
 public class Accessories extends ClothingArticle {
     public AccessoryTypes type;
 
-    public Accessories(AccessoryTypes _type){
-        type = _type;
-    }
-
-    public Accessories(AccessoryTypes _type, DecoratorWrapper _article){
+    public Accessories(Color c, Pattern p, Season s, AccessoryTypes _type, DecoratorWrapper _article){
+        super(c,p,s);
         type = _type;
         article = _article;
+    }
+    public Accessories(Color c, Pattern p, Season s, AccessoryTypes _type){
+        super(c,p,s);
+        type = _type;
     }
 }
 
