@@ -10,7 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- * Created by Owner on 11/18/2016.
+ * Created by Caleb on 11/18/2016.
  */
 public class JAddOutfitPanel extends JPanel {
     private JLabel typeLabel;
