@@ -12,10 +12,8 @@ import java.util.ArrayList;
 
 public class Closet implements Serializable{
     private ArrayList<ClothingArticle> clothes;
-    private transient User owner;
 
-    public Closet( User _owner ){
-        owner = _owner;
+    public Closet(){
         clothes = new ArrayList<>();
     }
 
@@ -32,7 +30,7 @@ public class Closet implements Serializable{
     }
 
     public ClothingArticle[] getClothes(){
-        return (ClothingArticle[])clothes.toArray();
+        return clothes.toArray(new ClothingArticle[clothes.size()]);
     }
 
     @Lob

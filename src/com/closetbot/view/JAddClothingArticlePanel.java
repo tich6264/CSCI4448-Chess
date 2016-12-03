@@ -1,5 +1,6 @@
 package com.closetbot.view;
 
+import com.closetbot.controller.UIController;
 import com.closetbot.model.*;
 import com.closetbot.model.Color;
 
@@ -12,15 +13,16 @@ import java.awt.event.ActionListener;
 /**
  * Created by Caleb on 11/18/2016.
  */
-public class JAddOutfitPanel extends JPanel {
+public class JAddClothingArticlePanel extends JPanel {
     private JLabel typeLabel;
     private JLabel subTypeLabel;
     private JLabel colorLabel;
     private JLabel patternLabel;
     private JLabel seasonLabel;
     private JButton saveButton;
+    private static UIController uiController = UIController.getUIController();
 
-    public JAddOutfitPanel()
+    public JAddClothingArticlePanel()
     {
         super();
         setLayout(new BorderLayout());
@@ -118,6 +120,9 @@ public class JAddOutfitPanel extends JPanel {
 
         // Save
         saveButton = new JButton("Save");
+        saveButton.addActionListener(actionEvent -> {
+            uiController.addClothingArticle((Type) subTypeList.getSelectedItem(),(Color) colorList.getSelectedItem(),(Pattern) patternList.getSelectedItem(),(Season) seasonList.getSelectedItem());
+        });
         bodyPanel.add(saveButton);
 
         // add all panels

@@ -12,6 +12,12 @@ public abstract class ClothingArticle implements DecoratorWrapper {
     private Season season;
     private Type type;
 
+    public ClothingArticle(Color c, Pattern p, Season s){
+        color = c;
+        pattern = p;
+        season = s;
+    }
+
     protected DecoratorWrapper article = null;
 
     @Override

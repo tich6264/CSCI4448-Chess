@@ -48,7 +48,6 @@ public class JViewClosetPanel extends JPanel {
                     } else {
                         int modelRow =
                                 table.convertRowIndexToModel(viewRow);
-                        statusText.setText( String.format("Selected Row in view: %d. " + "Selected Row in model: %d.", viewRow, modelRow));
                         selected = ((ViewClosetTableModel)table.getModel()).getValueAt(modelRow);
                     }
                 }

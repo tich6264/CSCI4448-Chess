@@ -7,11 +7,11 @@ import java.awt.event.ActionListener;
 
 public class JClosetFrame extends JFrame {
 
-    private JPanel jAddOutfitPanel = new JAddOutfitPanel();
-    private JPanel jEditOutfitPanel = new JEditOutfitPanel();
-    private JPanel jGenerateOutfitPanel = new JGenerateOutfitPanel();
-    private JPanel jViewClosetPanel = new JViewClosetPanel();
-    private JPanel jViewOutfitClosetPanel = new JViewOutfitClosetPanel();
+    private JPanel jAddClothingArticlePanel = new JAddClothingArticlePanel();
+    private JPanel jEditOutfitPanel         = new JEditOutfitPanel();
+    private JPanel jGenerateOutfitPanel     = new JGenerateOutfitPanel();
+    private JPanel jViewClosetPanel         = new JViewClosetPanel();
+    private JPanel jViewOutfitClosetPanel   = new JViewOutfitClosetPanel();
 
     public JClosetFrame() {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -42,7 +42,7 @@ public class JClosetFrame extends JFrame {
         menu.add(menuItem5);
 
         setJMenuBar(menubar);
-        menuItem1.addActionListener(new MenuAction(jAddOutfitPanel));
+        menuItem1.addActionListener(new MenuAction(jAddClothingArticlePanel));
         menuItem2.addActionListener(new MenuAction(jEditOutfitPanel));
         menuItem3.addActionListener(new MenuAction(jGenerateOutfitPanel));
         menuItem4.addActionListener(new MenuAction(jViewClosetPanel));
