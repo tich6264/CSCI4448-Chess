@@ -18,8 +18,8 @@ public class JLoginPanel extends JPanel {
 
     public JLoginPanel() {
         /*Local Variables*/
-        JLabel userLabel;
-        JLabel passwordLabel;
+        JLabel  userLabel;
+        JLabel  passwordLabel;
         JButton btnLogin;
         JButton btnRegister;
         this.setLayout(new BorderLayout());
@@ -53,6 +53,7 @@ public class JLoginPanel extends JPanel {
         /*Login Button*/
         btnLogin = new JButton("Login");
         bottomPanel.add(btnLogin);
+        JPanel t = this;
 
         btnLogin.addActionListener(new ActionListener() {
             @Override
@@ -62,12 +63,12 @@ public class JLoginPanel extends JPanel {
                                 JClosetFrame frame = new JClosetFrame();
                                 frame.setBounds(200, 200, 3000, 2000);
                                 frame.setVisible(true);
+                                SwingUtilities.getWindowAncestor(t).dispose();
                             }
                     );
 
                     setVisible(false);
-                }
-                else {
+                } else {
                     JOptionPane.showMessageDialog(JLoginPanel.this,
                             "Invalid username or password",
                             "Login",
@@ -85,13 +86,14 @@ public class JLoginPanel extends JPanel {
         btnRegister.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (userField.getText() != "" || passwordField.getText() != "" ){//(add check: not already in database => successful add to databse) {
+                if (userField.getText() != "" && passwordField.getText() != "" && Login.register(getUsername(), getPassword())) {//(add check: not already in database => successful add to databse) {
                     javax.swing.SwingUtilities.invokeLater((Runnable) () -> {
                                 JClosetFrame frame = new JClosetFrame();
+                                frame.setBounds(200, 200, 3000, 2000);
                                 frame.setVisible(true);
+                                SwingUtilities.getWindowAncestor(t).dispose();
                             }
                     );
-                    setVisible(false);
                 } else {
                     JOptionPane.showMessageDialog(JLoginPanel.this,
                             "Required fields, username and password, not filled in",
@@ -109,12 +111,15 @@ public class JLoginPanel extends JPanel {
         this.add(passwordPanel, BorderLayout.CENTER);
         this.add(bottomPanel, BorderLayout.SOUTH);
     }
-    private String getUsername(){
+
+    private String getUsername() {
         return userField.getText().trim();
     }
-    private String getPassword(){
+
+    private String getPassword() {
         return new String(passwordField.getText());
     }
+
     private static void createAndShowGui() {
         //Create and Setup frame/window
         JFrame frame = new JFrame("LoginFrame");
@@ -130,6 +135,7 @@ public class JLoginPanel extends JPanel {
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
     }
+
     public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {

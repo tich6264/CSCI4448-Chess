@@ -7,7 +7,8 @@ import com.closetbot.model.*;
  */
 public class UIController {
     private static UIController uiController;
-    private static User         user;
+    private User         user;
+    private DatabaseProxy db = new DatabaseProxy();
     private UIController() {
     }
 
@@ -17,14 +18,14 @@ public class UIController {
         return uiController;
     }
 
-    public static void setUser(User u){
+    public void setUser(User u){
         user = u;
     }
 
     /*
      * for use in JViewOutfitClosetPanel
      */
-    public static OutfitCloset getOutfitCloset() {
+    public OutfitCloset getOutfitCloset() {
         return user.getOutfits();
     }
 
@@ -56,13 +57,25 @@ public class UIController {
 
     public void removeClothingArticle(ClothingArticle cl) {
         user.getCloset().removeClothingArticle(cl);
+        db.saveUser(user);
     }
 
     public void removeOutfit(Outfit o) {
         assert(user != null);
         assert (user.getOutfits() != null);
-        if (o != null)
+        if (o != null){
             user.getOutfits().removeOutfit(o);
+            db.saveUser(user);
+        }
+    }
+    public void addOutfit(Outfit o){
+         assert(user != null);
+        assert (user.getOutfits() != null);
+        if (o != null){
+            user.getOutfits().addOutfit(o);
+            db.saveUser(user);
+        }
+
     }
 
     public void addClothingArticle(Type subType, Color color, Pattern pattern, Season season) {
@@ -71,5 +84,6 @@ public class UIController {
         ClothingArticleFactory factory = new ClothingArticleFactory();
         ClothingArticle        cl      = factory.createClothingArticle(subType, color, pattern, season);
         user.getCloset().addClothingArticle(cl);
+        db.saveUser(user);
     }
 }

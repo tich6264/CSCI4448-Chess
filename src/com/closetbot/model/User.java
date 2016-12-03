@@ -1,6 +1,10 @@
 package com.closetbot.model;
 
+import org.hibernate.annotations.*;
+
 import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
 /**
  * Created by Owner on 11/2/2016.
@@ -20,18 +24,20 @@ public class User {
     @Column(name="gender")
     private Gender       gender;
     @Column(name="closet") @Lob
+    @org.hibernate.annotations.Type(type = "serializable")
     private Closet       closet;
     @Column(name="outfits") @Lob
+    @org.hibernate.annotations.Type(type = "serializable")
     private OutfitCloset outfits;
     @Id @GeneratedValue
     @Column(name="id")
-    private String       id;
+    private int       id;
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
     public String getUsername() {

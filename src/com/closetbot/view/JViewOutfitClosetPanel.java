@@ -29,7 +29,7 @@ public class JViewOutfitClosetPanel extends JPanel {
 
     public JViewOutfitClosetPanel() {
         super();
-        OutfitCloset closet = UIController.getOutfitCloset();
+        OutfitCloset closet = uiController.getOutfitCloset();
         if (closet != null) {
             closetIterator = closet.iterator();
         }

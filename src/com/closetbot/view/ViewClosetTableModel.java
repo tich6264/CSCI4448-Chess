@@ -23,7 +23,7 @@ public class ViewClosetTableModel extends AbstractTableModel {
     };
 
     public ViewClosetTableModel(Object[][] data) {
-        if (data != null)
+        if (data != null && data.length > 0 && data[0].length > 0)
             this.data = data;
     }
 

@@ -27,12 +27,15 @@ public class DatabaseProxy {
         cfg.configure("hibernate.cfg.xml"); //load in our hibernate cfg
         factory = cfg.buildSessionFactory(); //make  a factory based on the configuration
     }
+    public User createUser(String username, String password) {
+        return createUser("Bob", "Smith", Gender.MALE, username,password);
+    }
 
     public User createUser(String firstName, String lastName, Gender g, String username, String password) {
         Session session = factory.openSession();
 
         User newUser = new User();
-        newUser.setCloset(new Closet(newUser));
+        newUser.setCloset(new Closet());
         newUser.setOutfits(new OutfitCloset());
         newUser.setUsername(username.trim());
         newUser.setPassword(password.trim());
@@ -61,6 +64,7 @@ public class DatabaseProxy {
         Transaction tx      = null;
         try {
             tx = session.beginTransaction();
+            System.out.println("Saving user");
             session.save(u);
             tx.commit();
         } catch (HibernateException e) {
@@ -85,6 +89,7 @@ public class DatabaseProxy {
         try {
             return typed.getSingleResult();
         } catch (final NoResultException nre) {
+            session.close();
             return null;
         }
     }
