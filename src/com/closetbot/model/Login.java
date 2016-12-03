@@ -18,6 +18,8 @@ public class Login {
     }
     public static boolean register(String username,String password ){
         DatabaseProxy dbproxy = new DatabaseProxy();
+        if(dbproxy.userExists(username))
+            return false;
         User u = dbproxy.createUser(username,password);
 
         UIController uiController = UIController.getUIController();
