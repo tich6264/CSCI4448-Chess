@@ -19,9 +19,9 @@ public class JGenerateOutfitPanel extends JPanel {
         JPanel middlepanel = new JPanel();
         middlepanel.setLayout(new BoxLayout(middlepanel, BoxLayout.Y_AXIS));
 
-        middlepanel.add(new JLabel("Shirt:"));
+        middlepanel.add(new JLabel("Top:"));
         middlepanel.add(new JLabel(" "),"span, grow"); //create space
-        middlepanel.add(new JLabel("Pants:"));
+        middlepanel.add(new JLabel("Bottom:"));
         middlepanel.add(new JLabel(" "),"span, grow"); //create space
         middlepanel.add(new JLabel("Shoes:"));
         middlepanel.add(new JLabel(" "),"span, grow"); //create space
