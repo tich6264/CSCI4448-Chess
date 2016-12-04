@@ -62,15 +62,15 @@ public class UIController {
 
     public void removeOutfit(Outfit o) {
         assert(user != null);
-        assert (user.getOutfits() != null);
+        assert(user.getOutfits() != null);
         if (o != null){
             user.getOutfits().removeOutfit(o);
             db.saveUser(user);
         }
     }
     public void addOutfit(Outfit o){
-         assert(user != null);
-        assert (user.getOutfits() != null);
+        assert(user != null);
+        assert(user.getOutfits() != null);
         if (o != null){
             user.getOutfits().addOutfit(o);
             db.saveUser(user);
@@ -80,10 +80,17 @@ public class UIController {
 
     public void addClothingArticle(Type subType, Color color, Pattern pattern, Season season) {
         assert(user != null);
-        assert (user.getCloset() != null);
+        assert(user.getCloset() != null);
         ClothingArticleFactory factory = new ClothingArticleFactory();
         ClothingArticle        cl      = factory.createClothingArticle(subType, color, pattern, season);
         user.getCloset().addClothingArticle(cl);
         db.saveUser(user);
+    }
+
+    public void editClothingArticle(Type subType, Color color, Pattern pattern, Season season) {
+        assert(user != null);
+        assert(user.getCloset() != null);
+
+        // TODO
     }
 }

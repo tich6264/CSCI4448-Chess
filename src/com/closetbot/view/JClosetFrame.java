@@ -8,7 +8,7 @@ import java.awt.event.ActionListener;
 public class JClosetFrame extends JFrame {
 
     private JPanel jAddClothingArticlePanel = new JAddClothingArticlePanel();
-    private JPanel jEditOutfitPanel         = new JEditOutfitPanel();
+    private JPanel jEditOutfitPanel         = new JEditClothingArticlePanel();
     private JPanel jGenerateOutfitPanel     = new JGenerateOutfitPanel();
     private JPanel jViewClosetPanel         = new JViewClosetPanel();
     private JPanel jViewOutfitClosetPanel   = new JViewOutfitClosetPanel();

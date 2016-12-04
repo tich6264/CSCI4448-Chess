@@ -13,7 +13,7 @@ import java.awt.event.ActionListener;
 /**
  * Created by Caleb on 11/18/2016.
  */
-public class JEditOutfitPanel extends JPanel {
+public class JEditClothingArticlePanel extends JPanel {
     private JLabel typeLabel;
     private JLabel subTypeLabel;
     private JLabel colorLabel;
@@ -21,7 +21,7 @@ public class JEditOutfitPanel extends JPanel {
     private JLabel seasonLabel;
     private JButton saveButton;
 
-    public JEditOutfitPanel()
+    public JEditClothingArticlePanel()
     {
         super();
         setLayout(new BorderLayout());
