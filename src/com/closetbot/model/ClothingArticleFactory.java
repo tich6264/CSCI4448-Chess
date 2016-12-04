@@ -16,4 +16,8 @@ public class ClothingArticleFactory {
         }
         return null;
     }
+
+    public ClothingArticle updateClothingArticle(Type type, Color c, Pattern p, Season s) {
+        return null;
+    }
 }

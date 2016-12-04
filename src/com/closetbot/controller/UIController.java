@@ -55,11 +55,6 @@ public class UIController {
         return null;
     }
 
-    public void removeClothingArticle(ClothingArticle cl) {
-        user.getCloset().removeClothingArticle(cl);
-        db.saveUser(user);
-    }
-
     public void removeOutfit(Outfit o) {
         assert(user != null);
         assert(user.getOutfits() != null);
@@ -68,14 +63,13 @@ public class UIController {
             db.saveUser(user);
         }
     }
-    public void addOutfit(Outfit o){
+    public void saveOutfit(Outfit o){
         assert(user != null);
         assert(user.getOutfits() != null);
         if (o != null){
             user.getOutfits().addOutfit(o);
             db.saveUser(user);
         }
-
     }
 
     public void addClothingArticle(Type subType, Color color, Pattern pattern, Season season) {
@@ -87,10 +81,19 @@ public class UIController {
         db.saveUser(user);
     }
 
+    public void removeClothingArticle(ClothingArticle cl) {
+        user.getCloset().removeClothingArticle(cl);
+        db.saveUser(user);
+    }
+
     public void editClothingArticle(Type subType, Color color, Pattern pattern, Season season) {
         assert(user != null);
         assert(user.getCloset() != null);
 
-        // TODO
+        ClothingArticleFactory factory = new ClothingArticleFactory();
+        ClothingArticle        c1      = factory.updateClothingArticle(subType, color, pattern, season);
+        // TODO: updateClothingArticle in ClothingArticleFactory;
+        user.getCloset().addClothingArticle(c1);
+        db.saveUser(user);
     }
 }

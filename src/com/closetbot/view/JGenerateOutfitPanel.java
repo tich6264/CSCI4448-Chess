@@ -1,5 +1,7 @@
 package com.closetbot.view;
 
+import com.closetbot.controller.UIController;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -8,6 +10,8 @@ import java.awt.*;
  * Created by Owner on 11/18/2016.
  */
 public class JGenerateOutfitPanel extends JPanel {
+    private static UIController uiController = UIController.getUIController();
+
     public JGenerateOutfitPanel() {
         this.setLayout(new BorderLayout());
 

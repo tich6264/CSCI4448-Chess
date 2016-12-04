@@ -63,7 +63,6 @@ public class JViewClosetPanel extends JPanel {
         });
 
         editItem.addActionListener(actionEvent -> {
-            //TODO UIController edit item
             System.out.println("Editing ; " + selected.toString());
 
             // switch to Edit Clothing Article panel
