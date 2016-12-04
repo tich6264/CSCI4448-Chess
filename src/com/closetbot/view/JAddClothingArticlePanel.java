@@ -25,6 +25,7 @@ public class JAddClothingArticlePanel extends JPanel {
     public JAddClothingArticlePanel()
     {
         super();
+        JPanel th = this;
         setLayout(new BorderLayout());
 
         // Title
@@ -111,13 +112,11 @@ public class JAddClothingArticlePanel extends JPanel {
             uiController.addClothingArticle((Type) subTypeList.getSelectedItem(),(Color) colorList.getSelectedItem(),(Pattern) patternList.getSelectedItem(),(Season) seasonList.getSelectedItem());
 
             // switch to updated View Closet
-            remove(titlePanel);
-            remove(bodyPanel);
-
-            add(new JViewClosetPanel());
-
-            repaint();
-            revalidate();
+            JClosetFrame frame = (JClosetFrame) SwingUtilities.getWindowAncestor(th);
+            frame.getContentPane().removeAll();
+            frame.getContentPane().add(new JViewClosetPanel());
+            frame.revalidate();
+            frame.repaint();
         });
         bodyPanel.add(saveButton);
 

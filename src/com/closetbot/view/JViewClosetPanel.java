@@ -66,16 +66,13 @@ public class JViewClosetPanel extends JPanel {
 
         editItem.addActionListener(actionEvent -> {
             System.out.println("Editing ; " + selected.toString());
-//            JClosetFrame frame = (JClosetFrame) SwingUtilities.getWindowAncestor(th);
-//            frame.getContentPane().remove();
+
             // switch to Edit Clothing Article panel
-            remove(tablePane);
-            remove(form);
-
-            add(new JEditClothingArticlePanel((ClothingArticle) selected));
-
-            repaint();
-            revalidate();
+            JClosetFrame frame = (JClosetFrame) SwingUtilities.getWindowAncestor(th);
+            frame.getContentPane().removeAll();
+            frame.getContentPane().add(new JEditClothingArticlePanel((ClothingArticle) selected));
+            frame.revalidate();
+            frame.repaint();
         });
 
         form.add(deleteItem);
