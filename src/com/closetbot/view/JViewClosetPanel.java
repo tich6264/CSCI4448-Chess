@@ -4,15 +4,8 @@ import com.closetbot.controller.UIController;
 import com.closetbot.model.ClothingArticle;
 
 import javax.swing.*;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 import javax.swing.table.TableRowSorter;
-import javax.swing.text.View;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 /**
  * Created by Owner on 11/18/2016.
@@ -64,8 +57,10 @@ public class JViewClosetPanel extends JPanel {
         editItem.setText("Edit");
 
         deleteItem.addActionListener(actionEvent -> {
-            uiController.removeClothingArticle((ClothingArticle) selected);
             System.out.println("Deleting : " + selected.toString());
+            uiController.removeClothingArticle((ClothingArticle) selected);
+            tableModel.setData(uiController.getClosetData());
+            tableModel.fireTableDataChanged();
         });
 
         editItem.addActionListener(actionEvent -> {

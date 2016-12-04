@@ -86,7 +86,7 @@ public class JLoginPanel extends JPanel {
         btnRegister.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (userField.getText() != "" && passwordField.getText() != "" && Login.register(getUsername(), getPassword())) {//(add check: not already in database => successful add to databse) {
+                if (!"".equals(userField.getText()) && !"".equals(passwordField.getText()) && Login.register(getUsername(), getPassword())) {//(add check: not already in database => successful add to databse) {
                     javax.swing.SwingUtilities.invokeLater((Runnable) () -> {
                                 JClosetFrame frame = new JClosetFrame();
                                 frame.setBounds(200, 200, 3000, 2000);
