@@ -11,7 +11,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- * Created by Owner on 11/18/2016.
+ * Created by Caleb on 11/18/2016.
  */
 public class JAddClothingArticlePanel extends JPanel {
     private JLabel typeLabel;
