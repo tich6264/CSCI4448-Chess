@@ -96,8 +96,15 @@ public class JLoginPanel extends JPanel {
                 if (!"".equals(userField.getText()) && !"".equals(passwordField.getText()) && Login.register(getUsername(), getPassword())) {//(add check: not already in database => successful add to databse) {
                     javax.swing.SwingUtilities.invokeLater((Runnable) () -> {
                                 JClosetFrame frame = new JClosetFrame();
-                                frame.setBounds(200, 200, 3000, 2000);
+
+                                Dimension screensize = Toolkit.getDefaultToolkit().getScreenSize();
+                                int height = screensize.height * 3/4;
+                                int width = screensize.width * 3/4;
+
+                                frame.setSize(width, height);
+                                frame.setLocationRelativeTo(null);
                                 frame.setVisible(true);
+
                                 SwingUtilities.getWindowAncestor(t).dispose();
                             }
                     );

@@ -9,6 +9,8 @@ public class JClosetFrame extends JFrame {
 
     private JPanel jAddClothingArticlePanel = new JAddClothingArticlePanel();
     private JPanel jGenerateOutfitPanel     = new JGenerateOutfitPanel();
+    private JPanel jViewClosetPanel         = new JViewClosetPanel();
+    private JPanel jViewOutfitClosetPanel   = new JViewOutfitClosetPanel();
 
     public JClosetFrame() {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -33,23 +35,8 @@ public class JClosetFrame extends JFrame {
         setJMenuBar(menubar);
         menuItem1.addActionListener(new MenuAction(jAddClothingArticlePanel));
         menuItem2.addActionListener(new MenuAction(jGenerateOutfitPanel));
-        //do the following because we want to create the panel on the fly in order to get the most accurate data
-        menuItem3.addActionListener((e) -> {
-            getContentPane().removeAll();
-            getContentPane().add(new JViewClosetPanel(), BorderLayout.CENTER);
-            getContentPane().revalidate();
-            getContentPane().doLayout();
-            getContentPane().repaint();
-            update(getGraphics());
-        });
-        menuItem4.addActionListener((e) -> {
-            getContentPane().removeAll();
-            getContentPane().add(new JViewOutfitClosetPanel(), BorderLayout.CENTER);
-            getContentPane().revalidate();
-            getContentPane().doLayout();
-            getContentPane().repaint();
-            update(getGraphics());
-        });
+        menuItem3.addActionListener(new MenuAction(jViewClosetPanel));
+        menuItem4.addActionListener(new MenuAction(jViewOutfitClosetPanel));
     }
 
     private void changePanel(JPanel panel) {
