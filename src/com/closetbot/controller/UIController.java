@@ -39,7 +39,7 @@ public class UIController {
     public Object[][] getClosetData() {
         if (user.getCloset() != null) {
             ClothingArticle[] clothes = user.getCloset().getClothes();
-            Object[][]        toRet   = new Object[5][clothes.length];
+            Object[][]        toRet   = new Object[clothes.length][5];
             int               i       = 0;
             for (ClothingArticle cl : clothes) {
                 Object[] toAdd = new Object[5];

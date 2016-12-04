@@ -122,6 +122,15 @@ public class JAddClothingArticlePanel extends JPanel {
         saveButton = new JButton("Save");
         saveButton.addActionListener(actionEvent -> {
             uiController.addClothingArticle((Type) subTypeList.getSelectedItem(),(Color) colorList.getSelectedItem(),(Pattern) patternList.getSelectedItem(),(Season) seasonList.getSelectedItem());
+
+            // switch to updated View Closet
+            remove(titlePanel);
+            remove(bodyPanel);
+
+            add(new JViewClosetPanel());
+
+            repaint();
+            revalidate();
         });
         bodyPanel.add(saveButton);
 
