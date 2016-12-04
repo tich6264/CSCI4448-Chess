@@ -13,22 +13,22 @@ import java.awt.*;
 public class JViewClosetPanel extends JPanel {
 
     private JTable table;
-    private JButton deleteItem ;
-    private JButton editItem ;
+    private JButton deleteItem;
+    private JButton editItem;
     private JTextField filterText;
     private JTextField statusText;
     private TableRowSorter<ViewClosetTableModel> sorter;
     private Object selected;
     private static UIController uiController = UIController.getUIController();
-
-    public JViewClosetPanel(){
+    private ViewClosetTableModel tableModel;
+    public JViewClosetPanel() {
         super();
-        setLayout(new BoxLayout(this,BoxLayout.Y_AXIS ));
+        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
-        ViewClosetTableModel tableModel = new ViewClosetTableModel(uiController.getClosetData());
+         tableModel = new ViewClosetTableModel(uiController.getClosetData());
 
         table = new JTable(tableModel);
-        table.setPreferredScrollableViewportSize(new Dimension(500,70));
+        table.setPreferredScrollableViewportSize(new Dimension(500, 70));
         table.setFillsViewportHeight(true);
 
         table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -37,11 +37,10 @@ public class JViewClosetPanel extends JPanel {
                     int viewRow = table.getSelectedRow();
                     if (viewRow < 0) {
                         //Selection got filtered away.
-                        statusText.setText("");
                     } else {
                         int modelRow =
                                 table.convertRowIndexToModel(viewRow);
-                        selected = ((ViewClosetTableModel)table.getModel()).getValueAt(modelRow);
+                        selected = ((ViewClosetTableModel) table.getModel()).getValueAt(modelRow);
                     }
                 }
         );
@@ -74,6 +73,7 @@ public class JViewClosetPanel extends JPanel {
         add(form);
 
     }
+
     private void newFilter() {
         RowFilter<ViewClosetTableModel, Object> rf = null;
         //If current expression doesn't parse, don't update.
@@ -108,5 +108,10 @@ public class JViewClosetPanel extends JPanel {
                 createAndShowGUI();
             }
         });
+    }
+    public void update(){
+        if(uiController == null) return;
+        tableModel.setData(uiController.getClosetData());
+        tableModel.fireTableDataChanged();
     }
 }

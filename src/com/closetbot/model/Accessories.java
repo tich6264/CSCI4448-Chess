@@ -15,5 +15,10 @@ public class Accessories extends ClothingArticle {
         super(c,p,s);
         type = _type;
     }
+
+    @Override
+    public Type getType() {
+        return type;
+    }
 }
 

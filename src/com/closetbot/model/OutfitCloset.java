@@ -36,5 +36,4 @@ public class OutfitCloset implements Serializable {
     public <T> T getData() {
         return (T) SerializationHelper.serialize(this);
     }
-
 }

@@ -8,10 +8,10 @@ import java.awt.event.ActionListener;
 public class JClosetFrame extends JFrame {
 
     private JPanel jAddClothingArticlePanel = new JAddClothingArticlePanel();
-    private JPanel jEditOutfitPanel         = new JEditOutfitPanel();
-    private JPanel jGenerateOutfitPanel     = new JGenerateOutfitPanel();
-    private JPanel jViewClosetPanel         = new JViewClosetPanel();
-    private JPanel jViewOutfitClosetPanel   = new JViewOutfitClosetPanel();
+    private JPanel jEditOutfitPanel = new JEditOutfitPanel();
+    private JPanel jGenerateOutfitPanel = new JGenerateOutfitPanel();
+    private JPanel jViewClosetPanel = new JViewClosetPanel();
+    private JPanel jViewOutfitClosetPanel = new JViewOutfitClosetPanel();
 
     public JClosetFrame() {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -26,8 +26,8 @@ public class JClosetFrame extends JFrame {
     }
 
     private void initMenu() {
-        JMenuBar  menubar   = new JMenuBar();
-        JMenu     menu      = new JMenu("Menu");
+        JMenuBar menubar = new JMenuBar();
+        JMenu menu = new JMenu("Menu");
         JMenuItem menuItem1 = new JMenuItem("Add Outfit");
         JMenuItem menuItem2 = new JMenuItem("Edit Outfit");
         JMenuItem menuItem3 = new JMenuItem("Generate Outfit");
@@ -56,6 +56,8 @@ public class JClosetFrame extends JFrame {
         getContentPane().doLayout();
         getContentPane().repaint();
         update(getGraphics());
+        if (panel instanceof JViewClosetPanel)
+            ((JViewClosetPanel) panel).update();
     }
 
     private class MenuAction implements ActionListener {

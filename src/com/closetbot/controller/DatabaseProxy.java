@@ -84,25 +84,13 @@ public class DatabaseProxy {
         query.setParameter("username", username);
         ArrayList<User> results = (ArrayList<User>) query.list();
         try {
-            return (User) results.get(0);
+            return results.get(0);
         } catch (Exception e) {
             return null;
         }
-        //CriteriaBuilder     builder  = session.getCriteriaBuilder();
-        //CriteriaQuery<User> criteria = builder.createQuery(User.class);
-        //Root<User>          from     = criteria.from(User.class);
-        //criteria.select(from);
-        //criteria.where(builder.equal(from.get("username"), username.trim()));
-        //criteria.where(builder.equal(from.get("password"), password.trim()));
-        //TypedQuery<User> typed = session.createQuery(criteria);
-        //try {
-        //    return typed.getSingleResult();
-        //} catch (final NoResultException nre) {
-        //    session.close();
-        //    return null;
-        //}
     }
-    public boolean userExists(String username){
+
+    public boolean userExists(String username) {
         Session session = factory.openSession();
         org.hibernate.query.Query query = session.createQuery("SELECT U FROM User U WHERE username = :username");
         query.setParameter("username", username);
