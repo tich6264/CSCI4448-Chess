@@ -19,6 +19,10 @@ public abstract class ClothingArticle implements DecoratorWrapper {
         season = s;
     }
 
+    public void setClothingArticle(DecoratorWrapper article){
+        this.article = article;
+    }
+
     protected DecoratorWrapper article = null;
 
     @Override

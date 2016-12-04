@@ -9,5 +9,5 @@ public enum Season implements Serializable {
     SPRING,
     SUMMER,
     FALL,
-    WINTER;
+    WINTER
 }
