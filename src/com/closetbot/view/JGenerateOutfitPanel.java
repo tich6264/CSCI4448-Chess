@@ -37,34 +37,9 @@ public class JGenerateOutfitPanel extends JPanel {
             System.out.println("Saving outfit");
         });
 
-
         //Add Components to frame
         this.add(topPanel, BorderLayout.NORTH);
         this.add(middlepanel, BorderLayout.CENTER);
         this.add(bottomPanel, BorderLayout.SOUTH);
-    }
-
-    private static void createAndShowGui() {
-        //Create and Setup frame/window
-        JFrame frame = new JFrame("myFrame");
-        frame.setSize(300, 300);
-        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-
-        //Create Content Pane
-        frame.getContentPane().add(new JGenerateOutfitPanel());
-
-
-        //Display the window.
-        frame.pack();
-        frame.setLocationRelativeTo(null);
-        frame.setVisible(true);
-    }
-
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                createAndShowGui();
-            }
-        });
     }
 }
