@@ -93,4 +93,10 @@ public class JViewClosetPanel extends JPanel {
         }
         sorter.setRowFilter(rf);
     }
+
+    public void update(){
+        if(uiController == null) return;
+        tableModel.setData(uiController.getClosetData());
+        tableModel.fireTableDataChanged();
+    }
 }
