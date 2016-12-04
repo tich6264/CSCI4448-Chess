@@ -26,7 +26,6 @@ public class JViewOutfitClosetPanel extends JPanel {
     private OutfitIterator                       closetIterator;
     private static UIController uiController = UIController.getUIController();
 
-
     public JViewOutfitClosetPanel() {
         super();
         OutfitCloset closet = uiController.getOutfitCloset();
@@ -56,7 +55,6 @@ public class JViewOutfitClosetPanel extends JPanel {
                     }
                 }
         );
-
 
         JScrollPane tablePane = new JScrollPane(table);
         add(tablePane);
@@ -101,7 +99,7 @@ public class JViewOutfitClosetPanel extends JPanel {
         if (closetIterator != null && closetIterator.hasNext()) {
             selected = (Outfit) closetIterator.next();
             ArrayList<ClothingArticle> clothes = (ArrayList<ClothingArticle>) selected.getClothingArticle();
-            Object[][]                 data    = new Object[4][clothes.size()];
+            Object[][]                 data    = new Object[clothes.size()][4];
             int                        i       = 0;
             for (ClothingArticle cl : clothes) {
                 Object[] toAdd = new Object[5];

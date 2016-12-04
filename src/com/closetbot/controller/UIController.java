@@ -90,10 +90,8 @@ public class UIController {
         assert(user != null);
         assert(user.getCloset() != null);
 
-        ClothingArticleFactory factory = new ClothingArticleFactory();
-        ClothingArticle        c1      = factory.updateClothingArticle(subType, color, pattern, season);
         // TODO: updateClothingArticle in ClothingArticleFactory;
-        user.getCloset().addClothingArticle(c1);
-        db.saveUser(user);
+//        user.getCloset().addClothingArticle(c1);
+//        db.saveUser(user);
     }
 }

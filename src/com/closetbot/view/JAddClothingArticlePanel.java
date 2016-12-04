@@ -47,22 +47,9 @@ public class JAddClothingArticlePanel extends JPanel {
             @Override
             public void actionPerformed( ActionEvent event ){
                 JComboBox typeList = (JComboBox) event.getSource();
-                Object selected = typeList.getSelectedItem();
-                if( selected.toString().equals("Accessories") ){
-                    subTypeList.setModel( new DefaultComboBoxModel<AccessoryTypes>(AccessoryTypes.values()));
-                }
-                else if( selected.toString().equals("Bottom") ){
-                    subTypeList.setModel( new DefaultComboBoxModel<BottomTypes>(BottomTypes.values()));
-                }
-                else if( selected.toString().equals("Top") ){
-                    subTypeList.setModel( new DefaultComboBoxModel<TopTypes>(TopTypes.values()));
-                }
-                else if( selected.toString().equals("Shoes") ){
-                    subTypeList.setModel( new DefaultComboBoxModel<ShoeTypes>(ShoeTypes.values()));
-                }
-                else{
-                    JComboBox subTypeList = new JComboBox();
-                }
+                Object selectedBox = typeList.getSelectedItem();
+
+                updateSubTypeList( selectedBox, subTypeList );
             }
         } );
 
@@ -137,5 +124,23 @@ public class JAddClothingArticlePanel extends JPanel {
         // add all panels
         add(titlePanel, BorderLayout.NORTH);
         add(bodyPanel, BorderLayout.CENTER);
+    }
+
+    private void updateSubTypeList( Object _selectedBox, JComboBox _subTypeList ){
+        if( _selectedBox.toString().equals("Accessories") ){
+            _subTypeList.setModel( new DefaultComboBoxModel<AccessoryTypes>(AccessoryTypes.values()));
+        }
+        else if( _selectedBox.toString().equals("Bottom") ){
+            _subTypeList.setModel( new DefaultComboBoxModel<BottomTypes>(BottomTypes.values()));
+        }
+        else if( _selectedBox.toString().equals("Top") ){
+            _subTypeList.setModel( new DefaultComboBoxModel<TopTypes>(TopTypes.values()));
+        }
+        else if( _selectedBox.toString().equals("Shoes") ){
+            _subTypeList.setModel( new DefaultComboBoxModel<ShoeTypes>(ShoeTypes.values()));
+        }
+        else{
+            JComboBox subTypeList = new JComboBox();
+        }
     }
 }

@@ -25,7 +25,7 @@ public class JViewClosetPanel extends JPanel {
         super();
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
-         tableModel = new ViewClosetTableModel(uiController.getClosetData());
+        tableModel = new ViewClosetTableModel(uiController.getClosetData());
 
         table = new JTable(tableModel);
         table.setPreferredScrollableViewportSize(new Dimension(500, 70));
@@ -69,7 +69,7 @@ public class JViewClosetPanel extends JPanel {
             remove(tablePane);
             remove(form);
 
-            add(new JEditClothingArticlePanel());
+            add(new JEditClothingArticlePanel((ClothingArticle) selected));
 
             repaint();
             revalidate();
