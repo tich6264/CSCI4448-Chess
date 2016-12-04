@@ -47,22 +47,9 @@ public class JAddClothingArticlePanel extends JPanel {
             @Override
             public void actionPerformed( ActionEvent event ){
                 JComboBox typeList = (JComboBox) event.getSource();
-                Object selected = typeList.getSelectedItem();
-                if( selected.toString().equals("Accessories") ){
-                    subTypeList.setModel( new DefaultComboBoxModel<AccessoryTypes>(AccessoryTypes.values()));
-                }
-                else if( selected.toString().equals("Bottom") ){
-                    subTypeList.setModel( new DefaultComboBoxModel<BottomTypes>(BottomTypes.values()));
-                }
-                else if( selected.toString().equals("Top") ){
-                    subTypeList.setModel( new DefaultComboBoxModel<TopTypes>(TopTypes.values()));
-                }
-                else if( selected.toString().equals("Shoes") ){
-                    subTypeList.setModel( new DefaultComboBoxModel<ShoeTypes>(ShoeTypes.values()));
-                }
-                else{
-                    JComboBox subTypeList = new JComboBox();
-                }
+                Object selectedBox = typeList.getSelectedItem();
+
+                updateSubTypeList( selectedBox, subTypeList );
             }
         } );
 
@@ -122,11 +109,38 @@ public class JAddClothingArticlePanel extends JPanel {
         saveButton = new JButton("Save");
         saveButton.addActionListener(actionEvent -> {
             uiController.addClothingArticle((Type) subTypeList.getSelectedItem(),(Color) colorList.getSelectedItem(),(Pattern) patternList.getSelectedItem(),(Season) seasonList.getSelectedItem());
+
+            // switch to updated View Closet
+            remove(titlePanel);
+            remove(bodyPanel);
+
+            add(new JViewClosetPanel());
+
+            repaint();
+            revalidate();
         });
         bodyPanel.add(saveButton);
 
         // add all panels
         add(titlePanel, BorderLayout.NORTH);
         add(bodyPanel, BorderLayout.CENTER);
+    }
+
+    private void updateSubTypeList( Object _selectedBox, JComboBox _subTypeList ){
+        if( _selectedBox.toString().equals("Accessories") ){
+            _subTypeList.setModel( new DefaultComboBoxModel<AccessoryTypes>(AccessoryTypes.values()));
+        }
+        else if( _selectedBox.toString().equals("Bottom") ){
+            _subTypeList.setModel( new DefaultComboBoxModel<BottomTypes>(BottomTypes.values()));
+        }
+        else if( _selectedBox.toString().equals("Top") ){
+            _subTypeList.setModel( new DefaultComboBoxModel<TopTypes>(TopTypes.values()));
+        }
+        else if( _selectedBox.toString().equals("Shoes") ){
+            _subTypeList.setModel( new DefaultComboBoxModel<ShoeTypes>(ShoeTypes.values()));
+        }
+        else{
+            JComboBox subTypeList = new JComboBox();
+        }
     }
 }

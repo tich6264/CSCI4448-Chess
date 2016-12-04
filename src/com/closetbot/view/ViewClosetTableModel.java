@@ -9,10 +9,11 @@ import javax.swing.table.AbstractTableModel;
  */
 public class ViewClosetTableModel extends AbstractTableModel {
     private boolean    DEBUG       = true;
-    private String[]   columnNames = {"Type",
-            "Color",
-            "Pattern",
-            "Season"};
+    private String[]   columnNames = { "Type",
+                                       "Style",
+                                       "Color",
+                                       "Pattern",
+                                       "Season" };
     private Object[][] data        = {
             {"Shoes", "BLUE",
                     "PLAID", "FALL", new Shoes(Color.BLUE, Pattern.PLAID, Season.FALL, ShoeTypes.BOOTS)},
@@ -44,7 +45,7 @@ public class ViewClosetTableModel extends AbstractTableModel {
     }
 
     public ClothingArticle getValueAt(int row) {
-        return (ClothingArticle) data[row][4];
+        return (ClothingArticle) data[row][5];
     }
 
     public void setData(Object[][] newData) {

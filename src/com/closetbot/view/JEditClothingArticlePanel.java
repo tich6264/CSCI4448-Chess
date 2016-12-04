@@ -23,14 +23,15 @@ public class JEditClothingArticlePanel extends JPanel {
     private JButton saveButton;
     private static UIController uiController = UIController.getUIController();
 
-    public JEditClothingArticlePanel()
+    public JEditClothingArticlePanel(ClothingArticle selected)
     {
         super();
+        JPanel th = this;
         setLayout(new BorderLayout());
 
         // Title
         JPanel titlePanel = new JPanel();
-        titlePanel.add(new JLabel("Add Your New Article of Clothing"));
+        titlePanel.add(new JLabel("Edit Your Article of Clothing"));
 
         // Dropdowns
         String[] types = new String[] {"Accessories", "Bottom", "Top", "Shoes"};
@@ -39,31 +40,28 @@ public class JEditClothingArticlePanel extends JPanel {
         JComboBox<Color> colorList = new JComboBox(Color.values());
         JComboBox<Pattern> patternList = new JComboBox(Pattern.values());
         JComboBox<Season> seasonList = new JComboBox(Season.values());
-
         // this is empty until a type is selected
         JComboBox subTypeList = new JComboBox();
+
+        // prepopulate the attribute selections based on the currently edited item
+        typeList.getModel().setSelectedItem(selected.getClass().getSimpleName());
+        typeList.setEnabled(false);
+
+        updateSubTypeList( typeList.getSelectedItem(), subTypeList );
+        subTypeList.getModel().setSelectedItem(selected.getType());
+
+        colorList.getModel().setSelectedItem(selected.getColor());
+        patternList.getModel().setSelectedItem(selected.getPattern());
+        seasonList.getModel().setSelectedItem(selected.getSeason());
 
         // updates subtype dropdown based on type selection
         typeList.addActionListener( new ActionListener() {
             @Override
             public void actionPerformed( ActionEvent event ){
                 JComboBox typeList = (JComboBox) event.getSource();
-                Object selected = typeList.getSelectedItem();
-                if( selected.toString().equals("Accessories") ){
-                    subTypeList.setModel( new DefaultComboBoxModel<AccessoryTypes>(AccessoryTypes.values()));
-                }
-                else if( selected.toString().equals("Bottom") ){
-                    subTypeList.setModel( new DefaultComboBoxModel<BottomTypes>(BottomTypes.values()));
-                }
-                else if( selected.toString().equals("Top") ){
-                    subTypeList.setModel( new DefaultComboBoxModel<TopTypes>(TopTypes.values()));
-                }
-                else if( selected.toString().equals("Shoes") ){
-                    subTypeList.setModel( new DefaultComboBoxModel<ShoeTypes>(ShoeTypes.values()));
-                }
-                else{
-                    JComboBox subTypeList = new JComboBox();
-                }
+                Object selectedBox = typeList.getSelectedItem();
+
+                updateSubTypeList( selectedBox, subTypeList );
             }
         } );
 
@@ -122,12 +120,36 @@ public class JEditClothingArticlePanel extends JPanel {
         // Save
         saveButton = new JButton("Save");
         saveButton.addActionListener(actionEvent -> {
-            uiController.editClothingArticle((Type) subTypeList.getSelectedItem(),(Color) colorList.getSelectedItem(),(Pattern) patternList.getSelectedItem(),(Season) seasonList.getSelectedItem());
+            uiController.editClothingArticle(selected, (Type) subTypeList.getSelectedItem(),(Color) colorList.getSelectedItem(),(Pattern) patternList.getSelectedItem(),(Season) seasonList.getSelectedItem());
+
+            JClosetFrame frame = (JClosetFrame) SwingUtilities.getWindowAncestor(th);
+            frame.getContentPane().removeAll();
+            frame.getContentPane().add(new JViewClosetPanel());
+            frame.revalidate();
+            frame.repaint();
         });
         bodyPanel.add(saveButton);
 
         // add all panels
         add(titlePanel, BorderLayout.NORTH);
         add(bodyPanel, BorderLayout.CENTER);
+    }
+
+    private void updateSubTypeList( Object _selectedBox, JComboBox _subTypeList ){
+        if( _selectedBox.toString().equals("Accessories") ){
+            _subTypeList.setModel( new DefaultComboBoxModel<AccessoryTypes>(AccessoryTypes.values()));
+        }
+        else if( _selectedBox.toString().equals("Bottom") ){
+            _subTypeList.setModel( new DefaultComboBoxModel<BottomTypes>(BottomTypes.values()));
+        }
+        else if( _selectedBox.toString().equals("Top") ){
+            _subTypeList.setModel( new DefaultComboBoxModel<TopTypes>(TopTypes.values()));
+        }
+        else if( _selectedBox.toString().equals("Shoes") ){
+            _subTypeList.setModel( new DefaultComboBoxModel<ShoeTypes>(ShoeTypes.values()));
+        }
+        else{
+            JComboBox subTypeList = new JComboBox();
+        }
     }
 }

@@ -39,15 +39,16 @@ public class UIController {
     public Object[][] getClosetData() {
         if (user.getCloset() != null) {
             ClothingArticle[] clothes = user.getCloset().getClothes();
-            Object[][]        toRet   = new Object[5][clothes.length];
+            Object[][]        toRet   = new Object[clothes.length][6];
             int               i       = 0;
             for (ClothingArticle cl : clothes) {
-                Object[] toAdd = new Object[5];
-                toAdd[0] = cl.getType().name();
-                toAdd[1] = cl.getColor().name();
-                toAdd[2] = cl.getPattern().name();
-                toAdd[3] = cl.getSeason().name();
-                toAdd[4] = cl;
+                Object[] toAdd = new Object[6];
+                toAdd[0] = cl.getClass().getSimpleName();
+                toAdd[1] = cl.getType().name();
+                toAdd[2] = cl.getColor().name();
+                toAdd[3] = cl.getPattern().name();
+                toAdd[4] = cl.getSeason().name();
+                toAdd[5] = cl;
                 toRet[i++] = toAdd;
             }
             return toRet;
@@ -86,14 +87,17 @@ public class UIController {
         db.saveUser(user);
     }
 
-    public void editClothingArticle(Type subType, Color color, Pattern pattern, Season season) {
+    public void editClothingArticle(ClothingArticle selected, Type subType, Color color, Pattern pattern, Season season) {
         assert(user != null);
         assert(user.getCloset() != null);
 
-        ClothingArticleFactory factory = new ClothingArticleFactory();
-        ClothingArticle        c1      = factory.updateClothingArticle(subType, color, pattern, season);
-        // TODO: updateClothingArticle in ClothingArticleFactory;
-        user.getCloset().addClothingArticle(c1);
+        ClothingArticle toEdit = user.getCloset().findClothingArticle( selected );
+
+        toEdit.setType( subType );
+        toEdit.setColor( color );
+        toEdit.setPattern( pattern );
+        toEdit.setSeason( season );
+
         db.saveUser(user);
     }
 }
