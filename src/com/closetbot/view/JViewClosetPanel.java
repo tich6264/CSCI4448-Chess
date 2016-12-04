@@ -21,8 +21,10 @@ public class JViewClosetPanel extends JPanel {
     private Object selected;
     private static UIController uiController = UIController.getUIController();
     private ViewClosetTableModel tableModel;
+
     public JViewClosetPanel() {
         super();
+        JPanel th = this;
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
         tableModel = new ViewClosetTableModel(uiController.getClosetData());
@@ -64,7 +66,8 @@ public class JViewClosetPanel extends JPanel {
 
         editItem.addActionListener(actionEvent -> {
             System.out.println("Editing ; " + selected.toString());
-
+//            JClosetFrame frame = (JClosetFrame) SwingUtilities.getWindowAncestor(th);
+//            frame.getContentPane().remove();
             // switch to Edit Clothing Article panel
             remove(tablePane);
             remove(form);

@@ -9,6 +9,21 @@ import java.util.List;
 public abstract class ClothingArticle implements DecoratorWrapper {
     private Color color;
     private Pattern pattern;
+
+    public void setColor(Color color) {
+        this.color = color;
+    }
+
+    public void setPattern(Pattern pattern) {
+        this.pattern = pattern;
+    }
+
+    public void setSeason(Season season) {
+        this.season = season;
+    }
+
+    public abstract void setType(Type type);
+
     private Season season;
     private Type type;
     private static final long serialVersionUID = 6529685098267757690L;

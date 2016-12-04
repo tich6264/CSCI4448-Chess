@@ -26,6 +26,7 @@ public class JEditClothingArticlePanel extends JPanel {
     public JEditClothingArticlePanel(ClothingArticle selected)
     {
         super();
+        JPanel th = this;
         setLayout(new BorderLayout());
 
         // Title
@@ -44,6 +45,7 @@ public class JEditClothingArticlePanel extends JPanel {
 
         // prepopulate the attribute selections based on the currently edited item
         typeList.getModel().setSelectedItem(selected.getClass().getSimpleName());
+        typeList.setEnabled(false);
 
         updateSubTypeList( typeList.getSelectedItem(), subTypeList );
         subTypeList.getModel().setSelectedItem(selected.getType());
@@ -118,7 +120,13 @@ public class JEditClothingArticlePanel extends JPanel {
         // Save
         saveButton = new JButton("Save");
         saveButton.addActionListener(actionEvent -> {
-            uiController.editClothingArticle((Type) subTypeList.getSelectedItem(),(Color) colorList.getSelectedItem(),(Pattern) patternList.getSelectedItem(),(Season) seasonList.getSelectedItem());
+            uiController.editClothingArticle(selected, (Type) subTypeList.getSelectedItem(),(Color) colorList.getSelectedItem(),(Pattern) patternList.getSelectedItem(),(Season) seasonList.getSelectedItem());
+
+            JClosetFrame frame = (JClosetFrame) SwingUtilities.getWindowAncestor(th);
+            frame.getContentPane().removeAll();
+            frame.getContentPane().add(new JViewClosetPanel());
+            frame.revalidate();
+            frame.repaint();
         });
         bodyPanel.add(saveButton);
 

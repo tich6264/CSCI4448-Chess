@@ -17,6 +17,11 @@ public class Shoes extends ClothingArticle {
     }
 
     @Override
+    public void setType(Type type) {
+        this.type = (ShoeTypes) type;
+    }
+
+    @Override
     public Type getType() {
         return type;
     }

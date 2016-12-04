@@ -17,6 +17,11 @@ public class Accessories extends ClothingArticle {
     }
 
     @Override
+    public void setType(Type type) {
+        this.type = (AccessoryTypes) type;
+    }
+
+    @Override
     public Type getType() {
         return type;
     }

@@ -12,6 +12,7 @@ import java.util.ArrayList;
 
 public class Closet implements Serializable{
     private ArrayList<ClothingArticle> clothes;
+    private static final long serialVersionUID = 5440266021897153962L;
 
     public Closet(){
         clothes = new ArrayList<>();
@@ -31,6 +32,14 @@ public class Closet implements Serializable{
 
     public ClothingArticle[] getClothes(){
         return clothes.toArray(new ClothingArticle[clothes.size()]);
+    }
+
+    public ClothingArticle findClothingArticle(ClothingArticle _clothes) {
+        for (ClothingArticle cl: clothes) {
+            if(_clothes == cl)
+                return cl;
+        }
+        return null;
     }
 
     @Lob

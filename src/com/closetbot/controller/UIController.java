@@ -87,12 +87,17 @@ public class UIController {
         db.saveUser(user);
     }
 
-    public void editClothingArticle(Type subType, Color color, Pattern pattern, Season season) {
+    public void editClothingArticle(ClothingArticle selected, Type subType, Color color, Pattern pattern, Season season) {
         assert(user != null);
         assert(user.getCloset() != null);
 
-        // TODO: updateClothingArticle in ClothingArticleFactory;
-//        user.getCloset().addClothingArticle(c1);
-//        db.saveUser(user);
+        ClothingArticle toEdit = user.getCloset().findClothingArticle( selected );
+
+        toEdit.setType( subType );
+        toEdit.setColor( color );
+        toEdit.setPattern( pattern );
+        toEdit.setSeason( season );
+
+        db.saveUser(user);
     }
 }
