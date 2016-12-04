@@ -11,6 +11,7 @@ public abstract class ClothingArticle implements DecoratorWrapper {
     private Pattern pattern;
     private Season season;
     private Type type;
+    private static final long serialVersionUID = 6529685098267757690L;
 
     public ClothingArticle(Color c, Pattern p, Season s){
         color = c;
@@ -44,7 +45,5 @@ public abstract class ClothingArticle implements DecoratorWrapper {
         return season;
     }
 
-    public Type getType() {
-        return type;
-    }
+    public abstract Type getType();
 }
