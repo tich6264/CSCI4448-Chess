@@ -21,7 +21,7 @@ public class JClosetFrame extends JFrame {
     private void initMenu() {
         JMenuBar menubar = new JMenuBar();
         JMenu menu = new JMenu("Menu");
-        JMenuItem menuItem1 = new JMenuItem("Add Outfit");
+        JMenuItem menuItem1 = new JMenuItem("Add Clothing Article");
         JMenuItem menuItem2 = new JMenuItem("Generate Outfit");
         JMenuItem menuItem3 = new JMenuItem("View Closet");
         JMenuItem menuItem4 = new JMenuItem("View Outfit Closet");

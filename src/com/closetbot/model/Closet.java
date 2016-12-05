@@ -26,7 +26,8 @@ public class Closet implements Serializable{
         for(int i = 0; i < 3; i++) {
             outfit = generateOutfit(season);
             //Add outfit to list of outfits
-            outfits.add(outfit);
+            if(outfit != null)
+                outfits.add(outfit);
         }
         return outfits;
     }
@@ -36,10 +37,10 @@ public class Closet implements Serializable{
         Outfit outfit= null;
 
         /*Select an article of clothing for each type*/
-        ClothingArticle top = selectTop(season);
-        ClothingArticle bottom = selectBottom(season);
-        ClothingArticle shoes = selectAccessory(season);
-        ClothingArticle accessory = selectShoes(season);
+        Top top = selectTop(season);
+        Bottom bottom = selectBottom(season);
+        Shoes shoes = selectShoes(season);
+        Accessories accessory =selectAccessory(season);
 
         /*If any of the article types failed to return an article*/
         if(top !=  null && bottom != null && shoes != null && accessory != null)
@@ -54,34 +55,35 @@ public class Closet implements Serializable{
         return outfit;
     }
 
-    private ClothingArticle selectTop(Season season) {
+    private Top selectTop(Season season) {
         for (ClothingArticle article : clothes) {
-            if (article instanceof Top){// && outfit.stream().filter(x -> x instanceof Bottom).toArray().length == 0) {
+            if (article instanceof Top){
+                Top toRet = (Top) article;
                 if (season == Season.SPRING) {
-                    if (article.getType() == TopTypes.SHORTSLEEVE || article.getType() == TopTypes.QUARTERSLEEVE ||
-                            article.getType() == TopTypes.CARDIGAN || article.getType() == TopTypes.DRESS ||
-                            article.getType() == TopTypes.JACKET) {
-                        return article;
+                    if (toRet.getType() == TopTypes.SHORTSLEEVE || toRet.getType() == TopTypes.QUARTERSLEEVE ||
+                            toRet.getType() == TopTypes.CARDIGAN || toRet.getType() == TopTypes.DRESS ||
+                            toRet.getType() == TopTypes.JACKET) {
+                        return toRet;
                     }
                 }
                 if (season == Season.SUMMER) {
-                    if (article.getType() == TopTypes.SHORTSLEEVE || article.getType() == TopTypes.QUARTERSLEEVE ||
-                            article.getType() == TopTypes.CARDIGAN || article.getType() == TopTypes.DRESS) {
-                        return article;
+                    if (toRet.getType() == TopTypes.SHORTSLEEVE || toRet.getType() == TopTypes.QUARTERSLEEVE ||
+                            toRet.getType() == TopTypes.CARDIGAN || toRet.getType() == TopTypes.DRESS) {
+                        return toRet;
                     }
                 }
                 if (season == Season.FALL) {
-                    if (article.getType() == TopTypes.LONGSLEEVE|| article.getType() == TopTypes.QUARTERSLEEVE ||
-                            article.getType() == TopTypes.CARDIGAN || article.getType() == TopTypes.DRESS ||
-                            article.getType() == TopTypes.JACKET) {
-                        return article;
+                    if (toRet.getType() == TopTypes.LONGSLEEVE|| toRet.getType() == TopTypes.QUARTERSLEEVE ||
+                            toRet.getType() == TopTypes.CARDIGAN || toRet.getType() == TopTypes.DRESS ||
+                            toRet.getType() == TopTypes.JACKET) {
+                        return toRet;
                     }
                 }
                 if (season == Season.WINTER) {
-                    if (article.getType() == TopTypes.LONGSLEEVE|| article.getType() == TopTypes.QUARTERSLEEVE ||
-                            article.getType() == TopTypes.CARDIGAN || article.getType() == TopTypes.DRESS ||
-                            article.getType() == TopTypes.JACKET) {
-                        return article;
+                    if (toRet.getType() == TopTypes.LONGSLEEVE|| toRet.getType() == TopTypes.QUARTERSLEEVE ||
+                            toRet.getType() == TopTypes.CARDIGAN || toRet.getType() == TopTypes.DRESS ||
+                            toRet.getType() == TopTypes.JACKET) {
+                        return toRet;
                     }
                 }
             }
@@ -89,39 +91,40 @@ public class Closet implements Serializable{
         return null;
     }
 
-    private ClothingArticle selectAccessory(Season season) {
+    private Accessories selectAccessory(Season season) {
         for (ClothingArticle article : clothes) {
             if (article instanceof Accessories) {// && outfit.stream().filter(x -> x instanceof Bottom).toArray().length == 0) {
+                Accessories toRet = (Accessories) article;
                 if (season == Season.SPRING) {
-                    if (article.getType() == AccessoryTypes.NECKLACE || article.getType() == AccessoryTypes.BRACELET ||
-                            article.getType() == AccessoryTypes.RING || article.getType() == AccessoryTypes.EARRINGS ||
-                            article.getType() == AccessoryTypes.HAT || article.getType() == AccessoryTypes.BELT ||
-                            article.getType() == AccessoryTypes.WATCH) {
-                        return article;
+                    if (toRet.getType() == AccessoryTypes.NECKLACE || toRet.getType() == AccessoryTypes.BRACELET ||
+                            toRet.getType() == AccessoryTypes.RING || toRet.getType() == AccessoryTypes.EARRINGS ||
+                            toRet.getType() == AccessoryTypes.HAT || toRet.getType() == AccessoryTypes.BELT ||
+                            toRet.getType() == AccessoryTypes.WATCH) {
+                        return toRet;
                     }
                 }
                 if (season == Season.SUMMER) {
-                    if (article.getType() == AccessoryTypes.NECKLACE || article.getType() == AccessoryTypes.BRACELET ||
-                            article.getType() == AccessoryTypes.RING || article.getType() == AccessoryTypes.EARRINGS ||
-                            article.getType() == AccessoryTypes.HAT || article.getType() == AccessoryTypes.BELT ||
-                            article.getType() == AccessoryTypes.WATCH) {
-                        return article;
+                    if (toRet.getType() == AccessoryTypes.NECKLACE || toRet.getType() == AccessoryTypes.BRACELET ||
+                            toRet.getType() == AccessoryTypes.RING || toRet.getType() == AccessoryTypes.EARRINGS ||
+                            toRet.getType() == AccessoryTypes.HAT || toRet.getType() == AccessoryTypes.BELT ||
+                            toRet.getType() == AccessoryTypes.WATCH) {
+                        return toRet;
                     }
                 }
                 if (season == Season.FALL) {
-                    if (article.getType() == AccessoryTypes.NECKLACE || article.getType() == AccessoryTypes.BRACELET ||
-                            article.getType() == AccessoryTypes.RING || article.getType() == AccessoryTypes.EARRINGS ||
-                            article.getType() == AccessoryTypes.HAT || article.getType() == AccessoryTypes.BELT ||
-                            article.getType() == AccessoryTypes.WATCH || article.getType() == AccessoryTypes.SCARF) {
-                        return article;
+                    if (toRet.getType() == AccessoryTypes.NECKLACE || toRet.getType() == AccessoryTypes.BRACELET ||
+                            toRet.getType() == AccessoryTypes.RING || toRet.getType() == AccessoryTypes.EARRINGS ||
+                            toRet.getType() == AccessoryTypes.HAT || toRet.getType() == AccessoryTypes.BELT ||
+                            toRet.getType() == AccessoryTypes.WATCH || toRet.getType() == AccessoryTypes.SCARF) {
+                        return toRet;
                     }
                 }
                 if (season == Season.WINTER) {
-                    if (article.getType() == AccessoryTypes.NECKLACE || article.getType() == AccessoryTypes.BRACELET ||
-                            article.getType() == AccessoryTypes.RING || article.getType() == AccessoryTypes.EARRINGS ||
-                            article.getType() == AccessoryTypes.HAT || article.getType() == AccessoryTypes.BELT ||
-                            article.getType() == AccessoryTypes.WATCH || article.getType() == AccessoryTypes.SCARF) {
-                        return article;
+                    if (toRet.getType() == AccessoryTypes.NECKLACE || toRet.getType() == AccessoryTypes.BRACELET ||
+                            toRet.getType() == AccessoryTypes.RING || toRet.getType() == AccessoryTypes.EARRINGS ||
+                            toRet.getType() == AccessoryTypes.HAT || toRet.getType() == AccessoryTypes.BELT ||
+                            toRet.getType() == AccessoryTypes.WATCH || toRet.getType() == AccessoryTypes.SCARF) {
+                        return toRet;
                     }
                 }
             }
@@ -129,31 +132,32 @@ public class Closet implements Serializable{
         return null;
     }
 
-    private ClothingArticle selectShoes(Season season) {
+    private Shoes selectShoes(Season season) {
         for (ClothingArticle article : clothes) {
             if (article instanceof Shoes){// && outfit.stream().filter(x -> x instanceof Bottom).toArray().length == 0) {
+                Shoes toRet = (Shoes) article;
                 if (season == Season.SPRING) {
-                    if (article.getType() == ShoeTypes.SANDALS || article.getType() == ShoeTypes.ATHLETIC ||
-                            article.getType() == ShoeTypes.HEELS || article.getType() == ShoeTypes.DRESS) {
-                        return article;
+                    if (toRet.getType() == ShoeTypes.SANDALS || toRet.getType() == ShoeTypes.ATHLETIC ||
+                            toRet.getType() == ShoeTypes.HEELS || toRet.getType() == ShoeTypes.DRESS) {
+                        return toRet;
                     }
                 }
                 if (season == Season.SUMMER) {
-                    if (article.getType() == ShoeTypes.SANDALS || article.getType() == ShoeTypes.ATHLETIC ||
-                            article.getType() == ShoeTypes.HEELS) {
-                        return article;
+                    if (toRet.getType() == ShoeTypes.SANDALS || toRet.getType() == ShoeTypes.ATHLETIC ||
+                            toRet.getType() == ShoeTypes.HEELS) {
+                        return toRet;
                     }
                 }
                 if (season == Season.FALL) {
-                    if (article.getType() == ShoeTypes.ATHLETIC || article.getType() == ShoeTypes.DRESS ||
-                            article.getType() == ShoeTypes.BOOTS) {
-                        return article;
+                    if (toRet.getType() == ShoeTypes.ATHLETIC || toRet.getType() == ShoeTypes.DRESS ||
+                            toRet.getType() == ShoeTypes.BOOTS) {
+                        return toRet;
                     }
                 }
                 if (season == Season.WINTER) {
-                    if (article.getType() == ShoeTypes.DRESS || article.getType() == ShoeTypes.ATHLETIC ||
-                            article.getType() == ShoeTypes.BOOTS) {
-                        return article;
+                    if (toRet.getType() == ShoeTypes.DRESS || toRet.getType() == ShoeTypes.ATHLETIC ||
+                            toRet.getType() == ShoeTypes.BOOTS) {
+                        return toRet;
                     }
                 }
             }
@@ -161,31 +165,32 @@ public class Closet implements Serializable{
         return null;
     }
 
-    private ClothingArticle selectBottom(Season season) {
+    private Bottom selectBottom(Season season) {
         for (ClothingArticle article : clothes) {
-            if (article instanceof Top){// && outfit.stream().filter(x -> x instanceof Bottom).toArray().length == 0) {
+            if (article instanceof Bottom){// && outfit.stream().filter(x -> x instanceof Bottom).toArray().length == 0) {
+                Bottom toRet = (Bottom) article;
                 if (season == Season.SPRING) {
-                    if (article.getType() == BottomTypes.SHORTPANTS || article.getType() == BottomTypes.SHORTSKIRT ||
-                            article.getType() == BottomTypes.LONGPANTS || article.getType() == BottomTypes.LONGSKIRT
-                            || article.getType() == BottomTypes.CAPRIS) {
-                        return article;
+                    if (toRet.getType() == BottomTypes.SHORTPANTS || toRet.getType() == BottomTypes.SHORTSKIRT ||
+                            toRet.getType() == BottomTypes.LONGPANTS || toRet.getType() == BottomTypes.LONGSKIRT
+                            || toRet.getType() == BottomTypes.CAPRIS) {
+                        return toRet;
                     }
                 }
                 if (season == Season.SUMMER) {
-                    if (article.getType() == BottomTypes.SHORTPANTS || article.getType() == BottomTypes.SHORTSKIRT ||
-                            article.getType() == BottomTypes.LONGPANTS || article.getType() == BottomTypes.LONGSKIRT) {
-                        return article;
+                    if (toRet.getType() == BottomTypes.SHORTPANTS || toRet.getType() == BottomTypes.SHORTSKIRT ||
+                            toRet.getType() == BottomTypes.LONGPANTS || toRet.getType() == BottomTypes.LONGSKIRT) {
+                        return toRet;
                     }
                 }
                 if (season == Season.FALL) {
-                    if (article.getType() == BottomTypes.LONGPANTS || article.getType() == BottomTypes.SHORTSKIRT ||
-                            article.getType() == BottomTypes.LONGSKIRT || article.getType() == BottomTypes.CAPRIS) {
-                        return article;
+                    if (toRet.getType() == BottomTypes.LONGPANTS || toRet.getType() == BottomTypes.SHORTSKIRT ||
+                            toRet.getType() == BottomTypes.LONGSKIRT || toRet.getType() == BottomTypes.CAPRIS) {
+                        return toRet;
                     }
                 }
                 if (season == Season.WINTER) {
-                    if (article.getType() == BottomTypes.LONGPANTS || article.getType() == BottomTypes.LONGSKIRT) {
-                        return article;
+                    if (toRet.getType() == BottomTypes.LONGPANTS || toRet.getType() == BottomTypes.LONGSKIRT) {
+                        return toRet;
                     }
                 }
             }
