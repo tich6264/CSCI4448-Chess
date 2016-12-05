@@ -19,9 +19,18 @@ public class Closet implements Serializable{
         clothes = new ArrayList<>();
     }
 
-
-    public Outfit generateOutfits(Season season){
+    public List<Outfit> generateOutfits(Season season){
         List<Outfit> outfits = new ArrayList<>();
+        Outfit outfit;
+        for(int i = 0; i < 3; i++) {
+            outfit = generateOutfit(season);
+            outfits.add(outfit);
+        }
+        return outfits;
+    }
+
+    public Outfit generateOutfit(Season season){
+
         Outfit outfit= null;
         int outfitSize = 0;
         ClothingArticle article;
@@ -29,10 +38,10 @@ public class Closet implements Serializable{
 
             //while what you have is not a complete outfit
      //   while(!(curr instanceof Outfit)) {
-        ClothingArticle top = selectTop(clothes, season);
-        ClothingArticle bottom = selectBottom(clothes, season);
-        ClothingArticle shoes = selectAccessory(clothes, season);
-        ClothingArticle accessory = selectShoes(clothes, season);
+        ClothingArticle top = selectTop(season);
+        ClothingArticle bottom = selectBottom(season);
+        ClothingArticle shoes = selectAccessory(season);
+        ClothingArticle accessory = selectShoes(season);
         if(top !=  null && bottom != null && shoes != null && accessory != null)
         {
             top.setClothingArticle(bottom);
@@ -40,24 +49,24 @@ public class Closet implements Serializable{
             accessory.setClothingArticle(shoes);
             outfit = new Outfit(accessory);
 
-            //outfits.add(outfit);
+
         }
         return outfit;
     }
 
-    private ClothingArticle selectBottom(ArrayList<ClothingArticle> clothes, Season season) {
+    private ClothingArticle selectTop(Season season) {
         for (ClothingArticle article : clothes) {
             return article;
         }
         return null;
     }
-    private ClothingArticle selectAccessory(ArrayList<ClothingArticle> clothes, Season season) {
+    private ClothingArticle selectAccessory(Season season) {
         for (ClothingArticle article : clothes) {
             return article;
         }
         return null;
     }
-    private ClothingArticle selectShoes(ArrayList<ClothingArticle> clothes, Season season) {
+    private ClothingArticle selectShoes(Season season) {
         for (ClothingArticle article : clothes) {
             return article;
         }
@@ -65,9 +74,9 @@ public class Closet implements Serializable{
     }
 
 
-    private ClothingArticle selectTop(List<ClothingArticle> outfit, Season season) {
+    private ClothingArticle selectBottom(Season season) {
         for (ClothingArticle article : clothes) {
-            if (article instanceof Top && outfit.stream().filter(x -> x instanceof Bottom).toArray().length == 0) {
+            if (article instanceof Top){// && outfit.stream().filter(x -> x instanceof Bottom).toArray().length == 0) {
                 if (season == Season.SPRING) {
                     if (article.getType() == BottomTypes.SHORTPANTS || article.getType() == BottomTypes.SHORTSKIRT ||
                             article.getType() == BottomTypes.LONGPANTS || article.getType() == BottomTypes.LONGSKIRT
