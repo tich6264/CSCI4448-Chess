@@ -22,8 +22,10 @@ public class Closet implements Serializable{
     public List<Outfit> generateOutfits(Season season){
         List<Outfit> outfits = new ArrayList<>();
         Outfit outfit;
+        /*Generate 3 outfits*/
         for(int i = 0; i < 3; i++) {
             outfit = generateOutfit(season);
+            //Add outfit to list of outfits
             outfits.add(outfit);
         }
         return outfits;
@@ -32,25 +34,23 @@ public class Closet implements Serializable{
     public Outfit generateOutfit(Season season){
 
         Outfit outfit= null;
-        int outfitSize = 0;
-        ClothingArticle article;
 
-
-            //while what you have is not a complete outfit
-     //   while(!(curr instanceof Outfit)) {
+        /*Select an article of clothing for each type*/
         ClothingArticle top = selectTop(season);
         ClothingArticle bottom = selectBottom(season);
         ClothingArticle shoes = selectAccessory(season);
         ClothingArticle accessory = selectShoes(season);
+
+        /*If any of the article types failed to return an article*/
         if(top !=  null && bottom != null && shoes != null && accessory != null)
         {
             top.setClothingArticle(bottom);
             shoes.setClothingArticle(top);
             accessory.setClothingArticle(shoes);
             outfit = new Outfit(accessory);
-
-
         }
+
+        //return null or full outfit
         return outfit;
     }
 
@@ -161,7 +161,6 @@ public class Closet implements Serializable{
         return null;
     }
 
-
     private ClothingArticle selectBottom(Season season) {
         for (ClothingArticle article : clothes) {
             if (article instanceof Top){// && outfit.stream().filter(x -> x instanceof Bottom).toArray().length == 0) {
@@ -193,8 +192,6 @@ public class Closet implements Serializable{
         }
         return null;
     }
-
-
 
     public void addClothingArticle( ClothingArticle clothingArticle ){
         clothes.add( clothingArticle );
