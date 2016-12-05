@@ -20,11 +20,11 @@ public class OutfitCloset implements Serializable {
     }
 
     public void addOutfit(Outfit o) {
-
+        outfits.add(o);
     }
 
     public void removeOutfit(Outfit o) {
-
+        outfits.remove(o);
     }
 
     public OutfitIterator iterator() {
