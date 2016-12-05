@@ -56,7 +56,35 @@ public class Closet implements Serializable{
 
     private ClothingArticle selectTop(Season season) {
         for (ClothingArticle article : clothes) {
-            return article;
+            if (article instanceof Top){// && outfit.stream().filter(x -> x instanceof Bottom).toArray().length == 0) {
+                if (season == Season.SPRING) {
+                    if (article.getType() == TopTypes.SHORTSLEEVE || article.getType() == TopTypes.QUARTERSLEEVE ||
+                            article.getType() == TopTypes.CARDIGAN || article.getType() == TopTypes.DRESS ||
+                            article.getType() == TopTypes.JACKET) {
+                        return article;
+                    }
+                }
+                if (season == Season.SUMMER) {
+                    if (article.getType() == TopTypes.SHORTSLEEVE || article.getType() == TopTypes.QUARTERSLEEVE ||
+                            article.getType() == TopTypes.CARDIGAN || article.getType() == TopTypes.DRESS) {
+                        return article;
+                    }
+                }
+                if (season == Season.FALL) {
+                    if (article.getType() == TopTypes.LONGSLEEVE|| article.getType() == TopTypes.QUARTERSLEEVE ||
+                            article.getType() == TopTypes.CARDIGAN || article.getType() == TopTypes.DRESS ||
+                            article.getType() == TopTypes.JACKET) {
+                        return article;
+                    }
+                }
+                if (season == Season.WINTER) {
+                    if (article.getType() == TopTypes.LONGSLEEVE|| article.getType() == TopTypes.QUARTERSLEEVE ||
+                            article.getType() == TopTypes.CARDIGAN || article.getType() == TopTypes.DRESS ||
+                            article.getType() == TopTypes.JACKET) {
+                        return article;
+                    }
+                }
+            }
         }
         return null;
     }

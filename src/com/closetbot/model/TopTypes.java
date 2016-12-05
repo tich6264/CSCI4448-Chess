@@ -10,5 +10,5 @@ public enum TopTypes implements Type {
     LONGSLEEVE,
     DRESS,
     CARDIGAN,
-    JACKET;
+    JACKET
 }
