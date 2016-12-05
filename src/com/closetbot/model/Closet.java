@@ -60,15 +60,75 @@ public class Closet implements Serializable{
         }
         return null;
     }
+
     private ClothingArticle selectAccessory(Season season) {
         for (ClothingArticle article : clothes) {
-            return article;
+            if (article instanceof Accessories) {// && outfit.stream().filter(x -> x instanceof Bottom).toArray().length == 0) {
+                if (season == Season.SPRING) {
+                    if (article.getType() == AccessoryTypes.NECKLACE || article.getType() == AccessoryTypes.BRACELET ||
+                            article.getType() == AccessoryTypes.RING || article.getType() == AccessoryTypes.EARRINGS ||
+                            article.getType() == AccessoryTypes.HAT || article.getType() == AccessoryTypes.BELT ||
+                            article.getType() == AccessoryTypes.WATCH) {
+                        return article;
+                    }
+                }
+                if (season == Season.SUMMER) {
+                    if (article.getType() == AccessoryTypes.NECKLACE || article.getType() == AccessoryTypes.BRACELET ||
+                            article.getType() == AccessoryTypes.RING || article.getType() == AccessoryTypes.EARRINGS ||
+                            article.getType() == AccessoryTypes.HAT || article.getType() == AccessoryTypes.BELT ||
+                            article.getType() == AccessoryTypes.WATCH) {
+                        return article;
+                    }
+                }
+                if (season == Season.FALL) {
+                    if (article.getType() == AccessoryTypes.NECKLACE || article.getType() == AccessoryTypes.BRACELET ||
+                            article.getType() == AccessoryTypes.RING || article.getType() == AccessoryTypes.EARRINGS ||
+                            article.getType() == AccessoryTypes.HAT || article.getType() == AccessoryTypes.BELT ||
+                            article.getType() == AccessoryTypes.WATCH || article.getType() == AccessoryTypes.SCARF) {
+                        return article;
+                    }
+                }
+                if (season == Season.WINTER) {
+                    if (article.getType() == AccessoryTypes.NECKLACE || article.getType() == AccessoryTypes.BRACELET ||
+                            article.getType() == AccessoryTypes.RING || article.getType() == AccessoryTypes.EARRINGS ||
+                            article.getType() == AccessoryTypes.HAT || article.getType() == AccessoryTypes.BELT ||
+                            article.getType() == AccessoryTypes.WATCH || article.getType() == AccessoryTypes.SCARF) {
+                        return article;
+                    }
+                }
+            }
         }
         return null;
     }
+
     private ClothingArticle selectShoes(Season season) {
         for (ClothingArticle article : clothes) {
-            return article;
+            if (article instanceof Shoes){// && outfit.stream().filter(x -> x instanceof Bottom).toArray().length == 0) {
+                if (season == Season.SPRING) {
+                    if (article.getType() == ShoeTypes.SANDALS || article.getType() == ShoeTypes.ATHLETIC ||
+                            article.getType() == ShoeTypes.HEELS || article.getType() == ShoeTypes.DRESS) {
+                        return article;
+                    }
+                }
+                if (season == Season.SUMMER) {
+                    if (article.getType() == ShoeTypes.SANDALS || article.getType() == ShoeTypes.ATHLETIC ||
+                            article.getType() == ShoeTypes.HEELS) {
+                        return article;
+                    }
+                }
+                if (season == Season.FALL) {
+                    if (article.getType() == ShoeTypes.ATHLETIC || article.getType() == ShoeTypes.DRESS ||
+                            article.getType() == ShoeTypes.BOOTS) {
+                        return article;
+                    }
+                }
+                if (season == Season.WINTER) {
+                    if (article.getType() == ShoeTypes.DRESS || article.getType() == ShoeTypes.ATHLETIC ||
+                            article.getType() == ShoeTypes.BOOTS) {
+                        return article;
+                    }
+                }
+            }
         }
         return null;
     }
@@ -98,8 +158,6 @@ public class Closet implements Serializable{
                 }
                 if (season == Season.WINTER) {
                     if (article.getType() == BottomTypes.LONGPANTS || article.getType() == BottomTypes.LONGSKIRT) {
-                        //toRet.add(article);
-                        //chosen = true;
                         return article;
                     }
                 }

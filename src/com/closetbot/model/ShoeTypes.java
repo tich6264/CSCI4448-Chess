@@ -8,5 +8,5 @@ public enum ShoeTypes implements Type {
     DRESS,
     SANDALS,
     HEELS,
-    BOOTS;
+    BOOTS
 }

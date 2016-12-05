@@ -8,5 +8,5 @@ public enum AccessoryTypes implements Type {
     SCARF,
     HAT,
     BELT,
-    WATCH;
+    WATCH
 }
