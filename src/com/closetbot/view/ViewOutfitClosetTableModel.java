@@ -17,7 +17,7 @@ public class ViewOutfitClosetTableModel extends AbstractTableModel{
             {"Shoes", "BLUE",
                     "PLAID", "FALL", new Shoes(Color.BLUE, Pattern.PLAID, Season.FALL, ShoeTypes.BOOTS)},
             {"Top", "RED",
-                    "STRIPED", "SUMMER", new Top(Color.RED, Pattern.STRIPES, Season.SUMMER, TopTypes.CARDIGAN)},
+                    "STRIPED", "SUMMER", new Top(Color.RED, Pattern.FLORAL, Season.SUMMER, TopTypes.CARDIGAN)},
             {"Bottom", "PINK",
                     "NONE", "SPRING", new Bottom(Color.PINK, Pattern.SOLID, Season.SPRING, BottomTypes.CAPRIS)}
     };

@@ -8,7 +8,7 @@ import java.io.Serializable;
 public enum Pattern implements Serializable {
     SOLID,
     PLAID,
-    STRIPES,
+    STRIPED,
     POLKADOT,
     FLORAL,
     ARGYLE;
