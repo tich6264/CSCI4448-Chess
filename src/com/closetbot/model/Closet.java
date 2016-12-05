@@ -20,28 +20,6 @@ public class Closet implements Serializable{
     }
 
 
-    /*
-    public void selectBottom(article) {
-        for (ClothingArticle article : clothes) {
-
-            if (article.getType() == BottomTypes.SHORTPANTS || article.getType() == BottomTypes.SHORTSKIRT) {
-                //toRet.add(article);
-                //chosen = true;
-                if (curr == null)
-                    curr = article;
-                else {
-                    article.setClothingArticle(curr);
-                    curr = article;
-                }
-                chosen.add(article);
-                outfitSize++;
-            }
-    }
-    public void selectAccessory(clothes, season) {
-    }
-    public void selectShoes(clothes, season) {
-    }
-*/
     public Outfit generateOutfits(Season season){
         List<Outfit> outfits = new ArrayList<>();
         Outfit outfit= null;
@@ -52,9 +30,9 @@ public class Closet implements Serializable{
             //while what you have is not a complete outfit
      //   while(!(curr instanceof Outfit)) {
         ClothingArticle top = selectTop(clothes, season);
-        ClothingArticle bottom = selectTop(clothes, season);
-        ClothingArticle shoes = selectTop(clothes, season);
-        ClothingArticle accessory = selectTop(clothes, season);
+        ClothingArticle bottom = selectBottom(clothes, season);
+        ClothingArticle shoes = selectAccessory(clothes, season);
+        ClothingArticle accessory = selectShoes(clothes, season);
         if(top !=  null && bottom != null && shoes != null && accessory != null)
         {
             top.setClothingArticle(bottom);
@@ -66,26 +44,56 @@ public class Closet implements Serializable{
         }
         return outfit;
     }
-    /*
-    public List<Outfit> Outfits(){
 
+    private ClothingArticle selectBottom(ArrayList<ClothingArticle> clothes, Season season) {
+        for (ClothingArticle article : clothes) {
+            return article;
+        }
+        return null;
     }
-    */
+    private ClothingArticle selectAccessory(ArrayList<ClothingArticle> clothes, Season season) {
+        for (ClothingArticle article : clothes) {
+            return article;
+        }
+        return null;
+    }
+    private ClothingArticle selectShoes(ArrayList<ClothingArticle> clothes, Season season) {
+        for (ClothingArticle article : clothes) {
+            return article;
+        }
+        return null;
+    }
+
 
     private ClothingArticle selectTop(List<ClothingArticle> outfit, Season season) {
         for (ClothingArticle article : clothes) {
             if (article instanceof Top && outfit.stream().filter(x -> x instanceof Bottom).toArray().length == 0) {
                 if (season == Season.SPRING) {
-                    if (article.getType() == BottomTypes.SHORTPANTS || article.getType() == BottomTypes.SHORTSKIRT) {
+                    if (article.getType() == BottomTypes.SHORTPANTS || article.getType() == BottomTypes.SHORTSKIRT ||
+                            article.getType() == BottomTypes.LONGPANTS || article.getType() == BottomTypes.LONGSKIRT
+                            || article.getType() == BottomTypes.CAPRIS) {
+                        return article;
+                    }
+                }
+                if (season == Season.SUMMER) {
+                    if (article.getType() == BottomTypes.SHORTPANTS || article.getType() == BottomTypes.SHORTSKIRT ||
+                            article.getType() == BottomTypes.LONGPANTS || article.getType() == BottomTypes.LONGSKIRT) {
+                        return article;
+                    }
+                }
+                if (season == Season.FALL) {
+                    if (article.getType() == BottomTypes.LONGPANTS || article.getType() == BottomTypes.SHORTSKIRT ||
+                            article.getType() == BottomTypes.LONGSKIRT || article.getType() == BottomTypes.CAPRIS) {
+                        return article;
+                    }
+                }
+                if (season == Season.WINTER) {
+                    if (article.getType() == BottomTypes.LONGPANTS || article.getType() == BottomTypes.LONGSKIRT) {
                         //toRet.add(article);
                         //chosen = true;
                         return article;
-
-
                     }
                 }
-
-
             }
         }
         return null;
