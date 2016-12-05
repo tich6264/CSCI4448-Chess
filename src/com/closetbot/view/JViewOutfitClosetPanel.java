@@ -116,4 +116,10 @@ public class JViewOutfitClosetPanel extends JPanel {
         }
         return false;
     }
+    public void update(){
+
+        if(uiController == null) return;
+        closetIterator = uiController.getOutfitCloset().iterator();
+
+    }
 }

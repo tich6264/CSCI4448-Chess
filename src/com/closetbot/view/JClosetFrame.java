@@ -48,6 +48,8 @@ public class JClosetFrame extends JFrame {
         update(getGraphics());
         if (panel instanceof JViewClosetPanel)
             ((JViewClosetPanel) panel).update();
+        if(panel instanceof JViewOutfitClosetPanel)
+            ((JViewOutfitClosetPanel) panel).update();
     }
 
     private class MenuAction implements ActionListener {
