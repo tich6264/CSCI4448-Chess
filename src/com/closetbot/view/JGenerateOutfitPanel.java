@@ -19,6 +19,7 @@ public class JGenerateOutfitPanel extends JPanel {
     private Outfit currentOutfit = null;
 
     public JGenerateOutfitPanel() {
+        JPanel th = this;
         this.setLayout(new BorderLayout());
 
         JComboBox<Season> seasonList = new JComboBox<>(Season.values());
@@ -83,10 +84,10 @@ public class JGenerateOutfitPanel extends JPanel {
                 Shoes s = (Shoes) clothes.stream().filter((x) -> x instanceof Shoes).toArray()[0];
                 Accessories a = (Accessories) clothes.stream().filter((x) -> x instanceof Accessories).toArray()[0];
 
-                top.setText(t.getType().name());
-                bottom.setText(b.getType().name());
-                shoes.setText(s.getType().name());
-                accessories.setText(a.getType().name());
+                top.setText(t.getPattern().name() + " " + t.getColor().name() + " " + t.getType().name());
+                bottom.setText(b.getPattern().name() + " " + b.getColor().name() + " " + b.getType().name());
+                shoes.setText(s.getPattern().name() + " " + s.getColor().name() + " " + s.getType().name());
+                accessories.setText(a.getPattern().name() + " " + a.getColor().name() + " " + a.getType().name());
             }
         });
 
@@ -101,6 +102,13 @@ public class JGenerateOutfitPanel extends JPanel {
         saveButton.addActionListener(actionEvent -> {
             System.out.println("Saving outfit");
             uiController.saveOutfit(currentOutfit);
+
+            // switch to Outfit Closet
+            JClosetFrame frame = (JClosetFrame) SwingUtilities.getWindowAncestor(th);
+            frame.getContentPane().removeAll();
+            frame.getContentPane().add(new JViewOutfitClosetPanel());
+            frame.revalidate();
+            frame.repaint();
         });
 
         //Add Components to frame
